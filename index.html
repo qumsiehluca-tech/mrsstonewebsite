@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stone Cold Loans — Theme Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0f14; --panel:#141921; --panel-2:#1b212b;
+    --line:#262d39; --text:#e8ecf2; --muted:#8a93a3; --accent:#3ddc91;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Outfit',system-ui,sans-serif;background:var(--bg);
+    color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+    padding:0 24px 80px;
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+  header{padding:72px 0 48px;text-align:center;border-bottom:1px solid var(--line)}
+  .badge{
+    display:inline-block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:18px;
+  }
+  h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  h1 span{color:var(--muted)}
+  .lede{max-width:620px;margin:18px auto 0;color:var(--muted);font-size:17px}
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    padding:56px 0;
+  }
+  @media(max-width:880px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .18s ease,border-color .18s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:#39414f}
+  .card img{width:100%;display:block;border-bottom:1px solid var(--line)}
+  .card-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .card-num{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:600;text-transform:uppercase}
+  .card h2{font-size:20px;font-weight:700;margin:8px 0 6px;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:14.5px;flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 18px}
+  .tag{
+    font-size:11.5px;background:var(--panel-2);border:1px solid var(--line);
+    color:var(--muted);padding:4px 9px;border-radius:999px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#04130c;font-weight:600;font-size:14.5px;
+    padding:11px 18px;border-radius:10px;text-decoration:none;
+    transition:filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.08)}
+  .notes{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:32px 34px;margin-top:8px;
+  }
+  .notes h3{font-size:17px;margin-bottom:14px}
+  .notes ul{list-style:none;display:grid;gap:11px}
+  .notes li{padding-left:22px;position:relative;color:var(--muted);font-size:14.5px}
+  .notes li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;
+    background:var(--accent);border-radius:2px}
+  .notes strong{color:var(--text);font-weight:600}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:48px;
+    padding-top:28px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">Stone Cold Loans</span>
+    <h1>Three directions for the site.<br><span>Pick the one that fits.</span></h1>
+    <p class="lede">Each theme is a complete, working one-page site — same copy and the same
+      4-step funding application, styled three different ways. Open them, click around,
+      and tell me which direction to refine.</p>
+  </header>
+
+  <div class="grid">
+    <article class="card">
+      <img src="_preview/theme1.jpg" alt="Modern Fintech Authority theme preview">
+      <div class="card-body">
+        <span class="card-num">Theme 01</span>
+        <h2>Modern Fintech Authority</h2>
+        <p>Calm, institutional, trustworthy. Reads like a premium banking startup —
+          good if she wants to look large and legitimate.</p>
+        <div class="tags">
+          <span class="tag">Dark navy</span><span class="tag">Emerald + gold</span>
+          <span class="tag">Glassmorphism</span><span class="tag">Large serif type</span>
+        </div>
+        <a class="btn" href="theme1-fintech/index.html">Open Theme 1 &rarr;</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="_preview/theme2.jpg" alt="Wall Street Private Capital theme preview">
+      <div class="card-body">
+        <span class="card-num">Theme 02</span>
+        <h2>Wall Street / Private Capital</h2>
+        <p>Aggressive, high-contrast, fast. The "money moves fast" energy that's
+          very common in MCA marketing.</p>
+        <div class="tags">
+          <span class="tag">Black + gold</span><span class="tag">Sharp edges</span>
+          <span class="tag">Skyline</span><span class="tag">Fast animation</span>
+        </div>
+        <a class="btn" href="theme2-wallstreet/index.html">Open Theme 2 &rarr;</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="_preview/theme3.jpg" alt="Industrial Blue-Collar Capital theme preview">
+      <div class="card-body">
+        <span class="card-num">Theme 03</span>
+        <h2>Industrial / Blue-Collar Capital</h2>
+        <p>Built around the businesses that actually use MCAs — trucking, construction,
+          trades. The most differentiated of the three.</p>
+        <div class="tags">
+          <span class="tag">Steel gray</span><span class="tag">Deep green + amber</span>
+          <span class="tag">Industry-first</span><span class="tag">Textured</span>
+        </div>
+        <a class="btn" href="theme3-industrial/index.html">Open Theme 3 &rarr;</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="notes">
+    <h3>A few things worth knowing</h3>
+    <ul>
+      <li><strong>"Stone Cold Loans" is a placeholder.</strong> The name, logo (a plain
+        square), phone, and email are easy to find-and-replace across all three.</li>
+      <li><strong>The application form is a demo.</strong> All 4 steps validate and show a
+        success screen, but nothing is sent anywhere yet — connecting it to a real inbox or
+        CRM is a quick follow-up once a theme is chosen.</li>
+      <li><strong>Theme 3's images are stand-ins.</strong> They're self-contained industrial
+        graphics (no external files). Drop real photography into <strong>theme3-industrial/assets/</strong>
+        using the same filenames to swap them — or I can source photos once the theme is picked.</li>
+      <li><strong>Compliance language is in.</strong> Each footer notes that Stone Cold Loans
+        provides merchant cash advances, not loans — worth a lawyer's review before launch.</li>
+      <li><strong>Everything is plain HTML/CSS/JS.</strong> No build step, no dependencies —
+        opens by double-clicking <em>index.html</em> in any folder.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Stone Cold Loans — theme comparison &middot; built for review, not yet for launch.
+  </footer>
+</div>
+</body>
+</html>
