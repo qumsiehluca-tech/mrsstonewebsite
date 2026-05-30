@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Archangel Funding — Merchant Cash Advance, Attorney-Led</title>
+<title>Archangel Funding — Font Version B (Private Capital)</title>
 <meta name="description" content="Archangel Funding provides merchant cash advances with attorney-led legal review, led by April Stone, Esq. Working capital, reviewed before you sign.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- VERSION A — Law firm: Cormorant Garamond headlines + Inter body -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- VERSION B — Private capital: Libre Franklin display + Inter body -->
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    ARCHANGEL FUNDING — shared stylesheet (inlined on every page)
@@ -17,7 +17,7 @@
 
 /* ---------- THEME TOKENS ---------- */
 :root{
-  --display:'Cormorant Garamond',Georgia,serif;
+  --display:'Libre Franklin',-apple-system,sans-serif;
   --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --gold:#9c7c3c;
   --gold-deep:#7d6230;
@@ -78,10 +78,10 @@ img{max-width:100%}
 /* ---------- TYPE ---------- */
 h1,h2,h3,h4{
   font-family:var(--display);color:var(--ink);font-weight:600;
-  line-height:1.12;letter-spacing:0;
+  line-height:1.13;letter-spacing:-.018em;
 }
-h1{font-size:clamp(2.7rem,5.6vw,4.3rem);font-weight:500}
-h2{font-size:clamp(2rem,3.8vw,2.9rem);font-weight:500}
+h1{font-size:clamp(2.4rem,5vw,3.7rem);font-weight:600}
+h2{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:600}
 h3{font-size:1.42rem}
 .kicker{
   font-family:var(--body);font-weight:600;font-size:.74rem;
@@ -91,7 +91,7 @@ h3{font-size:1.42rem}
 .lede{
   font-size:1.12rem;color:var(--text);max-width:62ch;
 }
-.serif-em{font-family:var(--display);font-style:italic;color:var(--gold);font-weight:500}
+.serif-em{color:var(--gold);font-weight:600}
 
 /* ---------- BUTTONS ---------- */
 .btn{
@@ -179,7 +179,7 @@ h3{font-size:1.42rem}
 .hero h1{color:var(--hero-ink);max-width:18ch;margin-bottom:1.6rem}
 .hero .lede{color:var(--hero-text);font-size:1.18rem;max-width:54ch;margin-bottom:1rem}
 .hero-attr{
-  font-family:var(--display);font-style:italic;font-size:1.16rem;
+  font-family:var(--body);font-weight:500;font-size:1.06rem;
   color:var(--gold);margin-bottom:2.4rem;
 }
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
@@ -276,8 +276,8 @@ h3{font-size:1.42rem}
   font-family:var(--display);font-size:1.6rem;color:var(--ink);font-weight:600;
 }
 .about-card .ac-role{
-  font-family:var(--display);font-style:italic;color:var(--gold);
-  font-size:1.05rem;margin-bottom:1.4rem;
+  font-family:var(--body);font-weight:600;color:var(--gold);
+  font-size:.95rem;margin-bottom:1.4rem;letter-spacing:.01em;
 }
 .about-card .ac-rule{height:1px;background:var(--line);margin:1.4rem 0}
 .ac-facts{display:grid;gap:.7rem}

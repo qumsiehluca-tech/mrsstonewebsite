@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archangel Funding — Merchant Cash Advance & MCA Debt Restructuring</title>
+<meta name="description" content="Archangel Funding provides merchant cash advances and MCA debt restructuring with attorney-led legal review. Led by April Stone, Esq.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ARCHANGEL FUNDING — single-file site
+   Black · gold · deep ecclesiastical green · attorney-led
+   Dark default + light mode. All CSS/JS inline, no dependencies.
+   ============================================================ */
+
+/* ---------- THEME TOKENS ---------- */
+:root{
+  --display:'Oswald',Impact,sans-serif;
+  --body:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --gold:#c8a44d;
+  --gold-br:#e9c976;
+  --gold-dp:#a8863a;
+  --green:#1f3d2f;       /* deep church green */
+  --green-br:#2f5e46;
+  --green-lt:#4a7d62;
+  --red:#b2382c;
+  --radius:0px;
+}
+/* DARK (default) */
+[data-theme="dark"]{
+  --bg:#050505;
+  --bg-2:#0d0d0d;
+  --bg-3:#141414;
+  --panel:#111111;
+  --line:#2a2a2a;
+  --line-soft:#1e1e1e;
+  --ink:#ffffff;
+  --text:#cfcfcf;
+  --muted:#8a8a8a;
+  --hero-wash:rgba(5,5,5,.78);
+  --shadow:0 30px 70px -20px rgba(0,0,0,.9);
+  --nav-bg:rgba(5,5,5,.86);
+  --nav-bg-solid:rgba(5,5,5,.98);
+  --field-bg:#0c0c0c;
+  --field-line:#333333;
+  --card-bg:#101010;
+}
+/* LIGHT */
+[data-theme="light"]{
+  --bg:#f6f4ef;
+  --bg-2:#ffffff;
+  --bg-3:#eceae3;
+  --panel:#ffffff;
+  --line:#dcd8cc;
+  --line-soft:#e7e3d8;
+  --ink:#16140f;
+  --text:#403c33;
+  --muted:#736d5f;
+  --hero-wash:rgba(20,18,14,.62);
+  --shadow:0 24px 60px -24px rgba(40,34,20,.35);
+  --nav-bg:rgba(246,244,239,.88);
+  --nav-bg-solid:rgba(246,244,239,.98);
+  --field-bg:#ffffff;
+  --field-line:#cfcabb;
+  --card-bg:#ffffff;
+  --gold:#9a7d2e;        /* a touch deeper so it reads on cream */
+  --gold-br:#b8932f;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--text);
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .3s ease,color .3s ease;
+}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.container-narrow{max-width:860px}
+em{font-style:normal}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+
+/* ---------- TYPOGRAPHY ---------- */
+h1,h2,h3,h4,h5{
+  font-family:var(--display);font-weight:600;line-height:1.06;
+  letter-spacing:.01em;text-transform:uppercase;color:var(--ink);
+}
+.eyebrow{
+  font-family:var(--body);font-weight:700;font-size:.72rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
+  display:inline-block;margin-bottom:1.2rem;
+  border-left:3px solid var(--gold);padding-left:.8rem;
+}
+.eyebrow.center{
+  display:block;text-align:center;border:none;padding:0;
+}
+.eyebrow.center::before,.eyebrow.center::after{
+  content:"";display:inline-block;width:22px;height:1px;
+  background:var(--gold);vertical-align:middle;margin:0 .7rem;
+}
+.section-title{
+  font-size:clamp(2.1rem,4.4vw,3.5rem);text-align:center;margin-bottom:1rem;
+}
+.section-title.left{text-align:left}
+.section-title em{color:var(--gold)}
+.section-lead{
+  text-align:center;max-width:680px;margin:0 auto 3.2rem;
+  color:var(--muted);font-size:1.06rem;
+}
+.section-lead.left{text-align:left;margin-left:0}
+/* the marginal "Catholic" refinement: a quiet serif accent line */
+.serif-note{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:1.32rem;color:var(--gold);line-height:1.4;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:var(--display);font-weight:600;font-size:.92rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:1rem 2rem;border:1px solid transparent;cursor:pointer;
+  transition:transform .15s,background .15s,color .15s,box-shadow .15s,border-color .15s;
+  clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-br),var(--gold));
+  color:#1a1407;box-shadow:0 0 0 0 rgba(200,164,77,.5);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(200,164,77,.55)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-green{
+  background:linear-gradient(135deg,var(--green-br),var(--green));
+  color:#fff;border-color:var(--green-br);
+}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(47,94,70,.6)}
+.btn-lg{padding:1.2rem 2.6rem;font-size:1.04rem}
+.btn-block{width:100%}
+.btn-pill{
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+}
+.btn-pill:hover{background:var(--gold);color:#1a1407}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--nav-bg);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);transition:background .25s;
+}
+.nav.scrolled{background:var(--nav-bg-solid)}
+.nav-inner{
+  max-width:1280px;margin:0 auto;padding:.72rem 28px;
+  display:flex;align-items:center;gap:1.6rem;
+}
+.brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
+.logo-mark{
+  width:38px;height:38px;flex-shrink:0;position:relative;
+  background:linear-gradient(150deg,var(--gold-br),var(--gold-dp));
+  display:flex;align-items:center;justify-content:center;
+  clip-path:polygon(50% 0,100% 28%,100% 72%,50% 100%,0 72%,0 28%);
+}
+/* simple chevron/wing mark inside the crest — no literal religious icon */
+.logo-mark::before{
+  content:"";width:14px;height:14px;
+  border-left:2.5px solid #1a1407;border-top:2.5px solid #1a1407;
+  transform:rotate(45deg) translateY(2px);
+}
+.brand-name{
+  font-family:var(--display);font-size:1.24rem;font-weight:600;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.05em;line-height:1;
+}
+.brand-name em{color:var(--gold)}
+.brand-sub{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:.74rem;letter-spacing:.02em;color:var(--muted);
+  text-transform:none;margin-top:1px;
+}
+.nav-links{display:flex;gap:1.6rem;margin-left:auto;align-items:center}
+.nav-links a{
+  color:var(--muted);font-size:.79rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;transition:color .15s;white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.is-active{color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.theme-toggle{
+  width:38px;height:38px;border:1px solid var(--line);background:transparent;
+  color:var(--ink);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:border-color .15s,color .15s;flex-shrink:0;
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);
+}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.theme-toggle svg{width:17px;height:17px}
+.nav-toggle{
+  display:none;flex-direction:column;gap:5px;background:none;border:none;
+  cursor:pointer;padding:8px;width:40px;height:40px;align-items:center;justify-content:center;
+}
+.nav-toggle span{width:22px;height:2px;background:var(--gold);transition:.25s;display:block}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{
+  display:none;flex-direction:column;gap:.15rem;
+  padding:.8rem 28px 1.4rem;background:var(--bg-2);
+  border-bottom:1px solid var(--line);
+}
+.nav-mobile a{
+  color:var(--text);padding:.8rem .2rem;font-weight:600;text-transform:uppercase;
+  font-size:.86rem;letter-spacing:.06em;border-bottom:1px solid var(--line-soft);
+}
+.nav-mobile a:last-of-type{border-bottom:none}
+.nav-mobile .btn{margin-top:.8rem;text-align:center}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;background:var(--bg);color:#fff;
+  padding:9.5rem 0 5.5rem;overflow:hidden;
+}
+[data-theme="light"] .hero{background:#14120e}
+.hero-grid-bg{
+  position:absolute;left:0;right:0;bottom:0;height:42%;
+  background:
+    linear-gradient(to top,rgba(200,164,77,.05),transparent),
+    repeating-linear-gradient(90deg,transparent 0 18px,rgba(255,255,255,.016) 18px 20px),
+    linear-gradient(to top,#0a0a0a,transparent);
+}
+.hero-grid-bg::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:100%;
+  background-image:
+    linear-gradient(to top,#070707 0%,transparent 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='240' viewBox='0 0 1200 240'%3E%3Cg fill='%23121212'%3E%3Crect x='0' y='120' width='70' height='120'/%3E%3Crect x='80' y='70' width='55' height='170'/%3E%3Crect x='145' y='150' width='60' height='90'/%3E%3Crect x='215' y='40' width='65' height='200'/%3E%3Crect x='290' y='110' width='50' height='130'/%3E%3Crect x='350' y='80' width='70' height='160'/%3E%3Crect x='430' y='20' width='58' height='220'/%3E%3Crect x='498' y='130' width='62' height='110'/%3E%3Crect x='570' y='90' width='54' height='150'/%3E%3Crect x='634' y='50' width='68' height='190'/%3E%3Crect x='712' y='115' width='56' height='125'/%3E%3Crect x='778' y='35' width='60' height='205'/%3E%3Crect x='848' y='100' width='66' height='140'/%3E%3Crect x='924' y='140' width='52' height='100'/%3E%3Crect x='986' y='65' width='64' height='175'/%3E%3Crect x='1060' y='120' width='58' height='120'/%3E%3Crect x='1128' y='85' width='62' height='155'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:bottom;background-size:cover;opacity:.9;
+}
+.hero-glow{
+  position:absolute;top:-12%;left:50%;transform:translateX(-50%);
+  width:72%;height:60%;
+  background:radial-gradient(ellipse,rgba(200,164,77,.16),transparent 65%);
+  filter:blur(34px);
+}
+.hero-inner{position:relative;text-align:center;z-index:2}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,5rem);max-width:17ch;margin:0 auto 1.3rem;
+  line-height:1.02;color:#fff;
+}
+.hero h1 em{color:var(--gold-br);text-shadow:0 0 38px rgba(200,164,77,.35)}
+.hero-sub{
+  max-width:620px;margin:0 auto 1rem;color:#cfcfcf;font-size:1.1rem;font-weight:300;
+}
+.hero-attorney{
+  font-family:var(--serif);font-style:italic;font-size:1.12rem;
+  color:var(--gold-br);margin:0 auto 2rem;
+}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.4rem}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);max-width:840px;margin:0 auto;
+  background:rgba(13,13,13,.6);
+}
+.stat{
+  padding:1.5rem 1rem;display:flex;flex-direction:column;gap:.2rem;
+  border-right:1px solid var(--line);position:relative;
+}
+.stat:last-child{border-right:none}
+.stat::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.stat-num{font-family:var(--display);font-size:2.1rem;font-weight:600;color:var(--gold-br)}
+.stat-label{font-size:.74rem;color:#9a9a9a;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- TRUST STRIP ---------- */
+.trustbar{
+  background:var(--bg-2);padding:1.4rem 0;border-bottom:1px solid var(--line);
+}
+.trustbar-inner{
+  display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;justify-content:center;
+}
+.trustbar .label{
+  color:var(--muted);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+}
+.trust-logos{display:flex;gap:1.6rem;flex-wrap:wrap;justify-content:center}
+.trust-logos span{
+  color:var(--text);font-family:var(--display);font-size:1rem;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;
+}
+
+/* ---------- SECTION SHELL ---------- */
+.section{padding:5.5rem 0}
+.section-dark{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section-green{
+  background:
+    linear-gradient(180deg,rgba(31,61,47,.16),transparent),
+    var(--bg-2);
+  border-top:1px solid var(--green-br);
+}
+
+/* ---------- WHAT WE OFFER ---------- */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.card{
+  background:var(--card-bg);border:1px solid var(--line);padding:2.2rem 1.8rem 2rem;
+  position:relative;transition:transform .18s,border-color .18s;
+  clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
+}
+.card:hover{transform:translateY(-5px);border-color:var(--gold)}
+.card-num{
+  font-family:var(--display);font-size:2.4rem;font-weight:600;
+  color:var(--gold);opacity:.32;line-height:1;margin-bottom:.7rem;
+}
+.card h3{font-size:1.32rem;margin-bottom:.6rem}
+.card p{color:var(--muted);font-size:.96rem}
+.card-tag{
+  display:inline-block;margin-top:1.1rem;font-family:var(--display);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold);padding:.28rem .7rem;
+}
+
+/* ---------- DEBT RESTRUCTURING ---------- */
+.restruct-wrap{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:3.4rem;align-items:start;
+}
+.restruct-lead p{margin-bottom:1.1rem;color:var(--text)}
+.restruct-lead p strong{color:var(--ink);font-weight:600}
+.restruct-points{
+  list-style:none;margin:1.6rem 0 2rem;display:grid;gap:1rem;
+}
+.restruct-points li{
+  position:relative;padding-left:2rem;color:var(--text);font-size:.99rem;
+}
+.restruct-points li::before{
+  content:"";position:absolute;left:0;top:.34em;width:11px;height:11px;
+  background:var(--green-br);
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+}
+.restruct-points li strong{color:var(--ink);font-weight:600}
+.restruct-panel{
+  background:var(--card-bg);border:1px solid var(--green-br);
+  padding:2.2rem 2rem;position:relative;
+  clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);
+}
+.restruct-panel .panel-eyebrow{
+  font-family:var(--body);font-weight:700;font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--green-lt);margin-bottom:1rem;display:block;
+}
+.restruct-panel h3{font-size:1.4rem;margin-bottom:1rem;color:var(--ink)}
+.restruct-steps{list-style:none;display:grid;gap:1.1rem;margin-bottom:1.6rem;counter-reset:rs}
+.restruct-steps li{
+  position:relative;padding-left:2.6rem;color:var(--text);font-size:.95rem;counter-increment:rs;
+}
+.restruct-steps li::before{
+  content:counter(rs);position:absolute;left:0;top:-.1rem;
+  width:1.7rem;height:1.7rem;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:.85rem;font-weight:600;
+  background:var(--green);color:#fff;border:1px solid var(--green-br);
+}
+.restruct-steps li strong{color:var(--ink);display:block;font-weight:600;font-size:.98rem}
+
+/* ---------- HOW IT WORKS ---------- */
+.steps{display:flex;align-items:flex-start;gap:1rem}
+.step{flex:1;text-align:center;padding:0 .6rem}
+.step-num{
+  font-family:var(--display);font-size:2.6rem;font-weight:600;
+  color:var(--gold);line-height:1;margin-bottom:.7rem;
+}
+.step h3{font-size:1.22rem;margin-bottom:.5rem}
+.step p{color:var(--muted);font-size:.95rem}
+.step-line{
+  flex:0 0 56px;height:1px;background:var(--line);margin-top:1.4rem;position:relative;
+}
+.step-line::after{
+  content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);
+  border-left:6px solid var(--gold);border-top:4px solid transparent;border-bottom:4px solid transparent;
+}
+
+/* ---------- WHY US ---------- */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+.why-card{
+  background:var(--card-bg);border:1px solid var(--line);padding:1.8rem 1.5rem;
+  transition:border-color .18s,transform .18s;
+}
+.why-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.why-icon{
+  width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  background:var(--green);color:var(--gold-br);font-size:1.2rem;margin-bottom:1rem;
+  border:1px solid var(--green-br);
+}
+.why-card h3{font-size:1.12rem;margin-bottom:.5rem}
+.why-card p{color:var(--muted);font-size:.92rem}
+
+/* ---------- ATTORNEY / ABOUT ---------- */
+.about-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:3.4rem;align-items:center}
+.about-text p{margin-bottom:1.1rem;color:var(--text)}
+.about-text p strong{color:var(--ink);font-weight:600}
+.about-text .btn{margin-top:.8rem}
+.about-panel{
+  background:var(--card-bg);border:1px solid var(--line);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.about-stat{
+  padding:1.8rem 1.4rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.about-stat:nth-child(2n){border-right:none}
+.about-stat:nth-child(n+3){border-bottom:none}
+.about-stat span{
+  display:block;font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--gold);
+}
+.about-stat small{color:var(--muted);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
+.credentials{
+  margin-top:1.4rem;padding:1.2rem 1.4rem;border:1px solid var(--green-br);
+  background:linear-gradient(135deg,rgba(31,61,47,.16),transparent);
+}
+.credentials .cred-name{
+  font-family:var(--display);font-size:1.1rem;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.04em;
+}
+.credentials .cred-role{
+  font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem;
+}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;gap:.7rem}
+.faq details{
+  background:var(--card-bg);border:1px solid var(--line);transition:border-color .18s;
+}
+.faq details[open]{border-color:var(--gold)}
+.faq summary{
+  cursor:pointer;padding:1.1rem 1.4rem;font-family:var(--display);
+  font-size:1.04rem;font-weight:500;color:var(--ink);text-transform:uppercase;
+  letter-spacing:.02em;list-style:none;display:flex;justify-content:space-between;
+  align-items:center;gap:1rem;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--display);color:var(--gold);font-size:1.5rem;
+  transition:transform .2s;flex-shrink:0;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 1.4rem 1.3rem;color:var(--muted);font-size:.97rem}
+
+/* ---------- CTA BAND ---------- */
+.cta-band{
+  position:relative;text-align:center;padding:5rem 0;
+  background:linear-gradient(135deg,var(--green),var(--bg));color:#fff;overflow:hidden;
+}
+[data-theme="light"] .cta-band{
+  background:linear-gradient(135deg,var(--green),#1a1812);
+}
+.cta-band h2{font-size:clamp(1.9rem,3.8vw,2.9rem);margin-bottom:.7rem;color:#fff}
+.cta-band h2 em{color:var(--gold-br)}
+.cta-band p{color:rgba(255,255,255,.8);margin-bottom:2rem}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--bg-2);border-top:1px solid var(--line);padding:3.4rem 0 0}
+.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2.6rem}
+.footer-brand p{color:var(--muted);font-size:.92rem;max-width:32ch;margin-top:.9rem}
+.footer-col h5{
+  font-family:var(--body);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.footer-col a,.footer-col span{
+  display:block;color:var(--muted);font-size:.92rem;padding:.28rem 0;transition:color .15s;
+}
+.footer-col a:hover{color:var(--gold)}
+.footer-hours{font-size:.84rem!important}
+.footer-base{
+  border-top:1px solid var(--line);padding:1.4rem 0 1.8rem;
+  display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
+}
+.footer-base span{color:var(--muted);font-size:.8rem}
+.footer-disclaimer{max-width:62ch;line-height:1.55}
+
+/* ---------- REVEAL ANIMATION ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* =====================================================
+   APPLY MODAL — 8-step application
+   ===================================================== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;background:rgba(2,2,2,.82);
+  backdrop-filter:blur(4px);display:none;align-items:flex-start;
+  justify-content:center;overflow-y:auto;padding:3rem 1rem;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--bg-2);border:1px solid var(--gold);width:100%;max-width:680px;
+  position:relative;box-shadow:var(--shadow);
+  clip-path:polygon(22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%,0 22px);
+}
+.modal-head{
+  padding:1.5rem 1.8rem 1.2rem;border-bottom:1px solid var(--line);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+}
+.modal-head .mh-title{
+  font-family:var(--display);font-size:1.3rem;color:var(--ink);text-transform:uppercase;
+}
+.modal-head .mh-sub{
+  font-family:var(--serif);font-style:italic;color:var(--gold);font-size:.98rem;
+}
+.modal-close{
+  background:none;border:1px solid var(--line);color:var(--ink);
+  width:34px;height:34px;cursor:pointer;font-size:1.1rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;
+}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+/* progress rail */
+.modal-progress{
+  display:flex;gap:4px;padding:1rem 1.8rem 0;
+}
+.mp-seg{flex:1;height:4px;background:var(--line);transition:background .3s}
+.mp-seg.done{background:var(--green-lt)}
+.mp-seg.active{background:var(--gold)}
+.modal-stepmeta{
+  padding:.7rem 1.8rem 0;font-size:.78rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
+.modal-body{padding:1.2rem 1.8rem 1.8rem;max-height:62vh;overflow-y:auto}
+.mstep{display:none}
+.mstep.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.mstep h3{font-size:1.32rem;color:var(--ink);margin-bottom:.3rem}
+.mstep .step-hint{color:var(--muted);font-size:.9rem;margin-bottom:1.3rem}
+.modal label{
+  display:block;margin-bottom:1rem;font-family:var(--display);
+  font-size:.8rem;font-weight:500;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.05em;
+}
+.modal label .opt{color:var(--muted);font-weight:400;text-transform:none;font-family:var(--body)}
+.modal input,.modal select,.modal textarea{
+  width:100%;margin-top:.4rem;padding:.85rem 1rem;
+  background:var(--field-bg);border:1px solid var(--field-line);color:var(--ink);
+  font-family:var(--body);font-size:16px;font-weight:400;
+  transition:border-color .15s,box-shadow .15s;
+}
+.modal input:focus,.modal select:focus,.modal textarea:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,164,77,.16);
+}
+.modal input.err,.modal select.err,.modal textarea.err{
+  border-color:var(--red);box-shadow:0 0 0 3px rgba(178,56,44,.14);
+}
+.m-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.m-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem}
+.field-error{
+  display:none;color:var(--red);font-family:var(--body);font-size:.78rem;
+  text-transform:none;letter-spacing:0;margin-top:.3rem;font-weight:500;
+}
+.field-error.show{display:block}
+/* yes/no toggle */
+.toggle-row{display:flex;gap:.6rem;margin:.5rem 0 1rem}
+.toggle-btn{
+  flex:1;padding:.8rem;background:var(--field-bg);border:1px solid var(--field-line);
+  color:var(--text);font-family:var(--display);font-size:.85rem;text-transform:uppercase;
+  letter-spacing:.06em;cursor:pointer;transition:.15s;
+}
+.toggle-btn.sel{background:var(--green);border-color:var(--green-br);color:#fff}
+/* dynamic owner / advance cards */
+.dyn-card{
+  border:1px solid var(--line);background:var(--bg-3);padding:1.1rem 1.1rem .3rem;
+  margin-bottom:1rem;position:relative;
+}
+.dyn-card .dyn-title{
+  font-family:var(--display);font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--gold);margin-bottom:.8rem;
+}
+.dyn-remove{
+  position:absolute;top:.7rem;right:.7rem;background:none;border:1px solid var(--line);
+  color:var(--muted);width:26px;height:26px;cursor:pointer;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.dyn-remove:hover{border-color:var(--red);color:var(--red)}
+.btn-add{
+  width:100%;padding:.8rem;background:transparent;border:1px dashed var(--field-line);
+  color:var(--gold);font-family:var(--display);font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.06em;cursor:pointer;transition:.15s;margin-bottom:.4rem;
+}
+.btn-add:hover{border-color:var(--gold);background:rgba(200,164,77,.05)}
+/* file dropzone */
+.dropzone{
+  border:1.5px dashed var(--field-line);background:var(--field-bg);
+  padding:1.4rem 1rem;text-align:center;cursor:pointer;transition:.15s;margin-top:.4rem;
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--gold);background:rgba(200,164,77,.05)}
+.dropzone .dz-title{
+  font-family:var(--display);font-size:.92rem;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.04em;
+}
+.dropzone .dz-hint{color:var(--muted);font-size:.82rem;margin-top:.2rem}
+.file-list{margin-top:.6rem;display:grid;gap:.4rem}
+.file-chip{
+  display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+  background:var(--bg-3);border:1px solid var(--line);padding:.5rem .7rem;
+  font-size:.82rem;color:var(--text);
+}
+.file-chip button{
+  background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;
+}
+.file-chip button:hover{color:var(--red)}
+/* review summary */
+.review-card{
+  border:1px solid var(--line);background:var(--bg-3);padding:1.1rem 1.2rem;margin-bottom:1.2rem;
+}
+.review-card h4{
+  font-family:var(--display);font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--gold);margin-bottom:.6rem;
+}
+.review-row{
+  display:flex;justify-content:space-between;gap:1rem;
+  font-size:.88rem;padding:.28rem 0;border-bottom:1px solid var(--line-soft);
+}
+.review-row:last-child{border-bottom:none}
+.review-row .rk{color:var(--muted)}
+.review-row .rv{color:var(--ink);text-align:right;font-weight:500}
+/* checkboxes */
+.m-check{
+  display:flex;gap:.7rem;align-items:flex-start;margin-bottom:.8rem;
+  font-family:var(--body);font-size:.88rem;color:var(--text);
+  text-transform:none;letter-spacing:0;font-weight:400;
+}
+.m-check input{width:auto;margin-top:.2rem;flex-shrink:0;accent-color:var(--green-br)}
+/* signature pad */
+.sig-wrap{margin-top:.4rem}
+.sig-pad{
+  width:100%;height:130px;background:var(--field-bg);
+  border:1px solid var(--field-line);cursor:crosshair;display:block;touch-action:none;
+}
+.sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:.4rem}
+.sig-tools button{
+  background:none;border:1px solid var(--line);color:var(--muted);
+  font-family:var(--body);font-size:.78rem;padding:.34rem .7rem;cursor:pointer;
+}
+.sig-tools button:hover{border-color:var(--gold);color:var(--gold)}
+.sig-tools .sig-label{font-size:.78rem;color:var(--muted)}
+/* modal footer nav */
+.modal-foot{
+  padding:1.1rem 1.8rem;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:.8rem;background:var(--bg-2);
+}
+.modal-foot .btn{flex:0 0 auto}
+.modal-note{
+  padding:0 1.8rem 1.2rem;font-size:.76rem;color:var(--muted);
+  display:flex;gap:.5rem;align-items:flex-start;
+}
+.modal-note svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;color:var(--green-lt)}
+/* success */
+.modal-success{padding:2.4rem 2rem;text-align:center;display:none}
+.modal-success.show{display:block}
+.success-mark{
+  width:66px;height:66px;margin:0 auto 1.2rem;background:var(--green);
+  color:#fff;font-size:1.9rem;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--green-br);
+}
+.modal-success h3{font-size:1.5rem;color:var(--ink);margin-bottom:.6rem}
+.modal-success p{color:var(--muted);max-width:42ch;margin:0 auto .4rem}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1000px){
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .restruct-wrap{grid-template-columns:1fr;gap:2.4rem}
+  .about-wrap{grid-template-columns:1fr;gap:2.4rem}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .card-grid{grid-template-columns:1fr}
+  .steps{flex-direction:column;gap:1.6rem}
+  .step-line{display:none}
+  .step{padding:0}
+}
+@media(max-width:600px){
+  html{scroll-padding-top:72px}
+  .container{padding:0 20px}
+  .nav-inner{padding:.6rem 20px;gap:.6rem}
+  .nav-apply{display:none}
+  .brand-name{font-size:1rem;letter-spacing:.03em}
+  .brand-sub{font-size:.64rem}
+  .brand{gap:.5rem;min-width:0}
+  .logo-mark{width:32px;height:32px}
+  .hero{padding:6.8rem 0 3.6rem}
+  .hero h1{font-size:clamp(2rem,8.6vw,2.9rem);line-height:1.08;margin-bottom:1rem}
+  .hero-sub{font-size:1rem}
+  .hero-attorney{font-size:1rem;margin-bottom:1.6rem}
+  .hero-cta{flex-direction:column;gap:.7rem;margin-bottom:2.6rem}
+  .hero-cta .btn{width:100%}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stat{padding:1.2rem .8rem}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+  .stat-num{font-size:1.8rem}
+  .section{padding:3.6rem 0}
+  .section-title{font-size:clamp(1.7rem,6.8vw,2.3rem)}
+  .why-grid,.footer-inner{grid-template-columns:1fr}
+  .about-panel{grid-template-columns:1fr 1fr}
+  .restruct-panel,.restruct-points li{font-size:.95rem}
+  .btn{padding:1.05rem 1.6rem;font-size:.9rem}
+  .btn-lg{padding:1.1rem 1.8rem;font-size:.98rem}
+  .footer-base{flex-direction:column;gap:.6rem}
+  .trustbar-inner{gap:1rem}
+  .trust-logos{gap:1rem}
+  /* modal on phones */
+  .modal-overlay{padding:0}
+  .modal{
+    max-width:100%;min-height:100%;clip-path:none;border:none;
+    display:flex;flex-direction:column;
+  }
+  .modal-body{max-height:none;flex:1}
+  .modal-head{padding:1.1rem 1.2rem .9rem}
+  .modal-progress,.modal-stepmeta{padding-left:1.2rem;padding-right:1.2rem}
+  .modal-body{padding:1.1rem 1.2rem 1.4rem}
+  .modal-foot{padding:1rem 1.2rem}
+  .modal-note{padding:0 1.2rem 1rem}
+  .m-row,.m-row-3{grid-template-columns:1fr;gap:0}
+  .modal-foot .btn{flex:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>
+        <span class="brand-name">Archangel <em>Funding</em></span>
+        <span class="brand-sub">Capital, with counsel.</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#offer">Funding</a>
+      <a href="#restructuring">Debt Restructuring</a>
+      <a href="#how">How It Works</a>
+      <a href="#about">About April</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch color theme">
+        <!-- icon swapped by JS -->
+      </button>
+      <a href="#" class="btn btn-pill nav-apply" data-open-apply>Apply</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#home">Home</a>
+    <a href="#offer">Funding</a>
+    <a href="#restructuring">Debt Restructuring</a>
+    <a href="#how">How It Works</a>
+    <a href="#about">About April</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" class="btn btn-primary" data-open-apply>Apply for Funding</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container hero-inner">
+    <span class="eyebrow center reveal">Merchant Cash Advance &nbsp;·&nbsp; Attorney-Led Review</span>
+    <h1 class="reveal">Working capital for your business — <em>and a lawyer in your corner.</em></h1>
+    <p class="hero-sub reveal">Archangel Funding helps small and mid-sized businesses get funded quickly, then makes sure the paperwork behind that money is something you can actually live with. Every deal is reviewed by an attorney before you sign a thing.</p>
+    <p class="hero-attorney reveal">Led by April Stone, Esq. — funding advisor and licensed attorney.</p>
+    <div class="hero-cta reveal">
+      <a href="#" class="btn btn-primary" data-open-apply>Apply for Funding</a>
+      <a href="#restructuring" class="btn btn-ghost">Already in an advance? →</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Typical Funding</span></div>
+      <div class="stat"><span class="stat-num">Esq.</span><span class="stat-label">Review on Every Deal</span></div>
+      <div class="stat"><span class="stat-num">$2M</span><span class="stat-label">Max Advance</span></div>
+      <div class="stat"><span class="stat-num">Vetted</span><span class="stat-label">Lender Network</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trustbar">
+  <div class="container trustbar-inner">
+    <span class="label">Funding businesses across</span>
+    <div class="trust-logos">
+      <span>Construction</span><span>Trucking</span><span>Restaurants</span>
+      <span>Retail</span><span>Healthcare</span><span>Auto &amp; Trades</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT WE OFFER ============ -->
+<section class="section" id="offer">
+  <div class="container">
+    <span class="eyebrow center reveal">What We Do</span>
+    <h2 class="section-title reveal">Funding that's quick — <em>and honest about the terms.</em></h2>
+    <p class="section-lead reveal">Plenty of brokers can hand you money fast. Far fewer will sit down and explain exactly what you're agreeing to. Archangel does both, because the second part is where most business owners get hurt.</p>
+    <div class="card-grid">
+      <article class="card reveal">
+        <div class="card-num">01</div>
+        <h3>Merchant Cash Advance</h3>
+        <p>A lump sum of working capital now, repaid as a set percentage of your daily or weekly receivables. It isn't a loan — there's no fixed monthly bill — and we'll walk you through exactly what that means for your account.</p>
+        <span class="card-tag">Most Requested</span>
+      </article>
+      <article class="card reveal">
+        <div class="card-num">02</div>
+        <h3>Legal Review &amp; Opinion</h3>
+        <p>Before you sign, April reviews the agreement and gives you a plain-English legal opinion on it: what the lien covers, how repayment is drawn, and where your rights actually stand. Most owners have never been offered this.</p>
+        <span class="card-tag">What Sets Us Apart</span>
+      </article>
+      <article class="card reveal">
+        <div class="card-num">03</div>
+        <h3>MCA Debt Restructuring</h3>
+        <p>Already stacked with advances and feeling the daily draws? We help restructure existing MCA debt into something survivable — see the dedicated section below for how that works.</p>
+        <span class="card-tag">See Below</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEBT RESTRUCTURING ============ -->
+<section class="section section-green" id="restructuring">
+  <div class="container">
+    <span class="eyebrow center reveal">A Separate Service</span>
+    <h2 class="section-title reveal">MCA Debt <em>Restructuring</em></h2>
+    <p class="section-lead reveal">If your business took on one advance, then another to cover the first, and the daily withdrawals are now squeezing your operating account — you are not alone, and you are not out of options.</p>
+
+    <div class="restruct-wrap">
+      <div class="restruct-lead reveal">
+        <p>A merchant cash advance isn't structured like a loan. There's no set monthly payment and no fixed payoff date you can simply plan around. Instead, the funder takes <strong>a percentage of your future receivables</strong> — often pulling directly from your bank account every business day — secured by <strong>a lien on those future receivables</strong>.</p>
+        <p>When that's working, it's manageable. When you're carrying several at once, the combined daily draws can take a real bite out of the money you need to make payroll and keep the lights on. That's the situation restructuring is built for.</p>
+        <p>Here's the honest part: Archangel is not a debt-settlement mill, and we don't make promises we can't keep. What April offers is <strong>a genuine legal opinion on where you stand</strong> — your agreements, your liens, your exposure — and then a practical path forward.</p>
+        <ul class="restruct-points">
+          <li><strong>An attorney's read of your actual agreements.</strong> Not a sales pitch — a lawyer telling you what your contracts really say and what leverage you have.</li>
+          <li><strong>Restructuring through cooperative, vetted lenders.</strong> Much of the work happens hand-in-hand with funders we've personally vetted — checked specifically to confirm their collection practices are fully within the law.</li>
+          <li><strong>Protection of your rights at every step.</strong> Aggressive or unlawful collection tactics are more common than they should be. Knowing the line — and having counsel who'll hold it — changes the conversation.</li>
+          <li><strong>A plan you can actually operate under.</strong> The goal is a structure your daily cash flow can survive, so the business stays open.</li>
+        </ul>
+        <a href="#" class="btn btn-green" data-open-apply>Request a Restructuring Review</a>
+      </div>
+
+      <aside class="restruct-panel reveal">
+        <span class="panel-eyebrow">How a Review Works</span>
+        <h3>From overwhelmed to a clear plan</h3>
+        <ol class="restruct-steps">
+          <li><strong>Send us your agreements.</strong> Your current advances, balances, and recent bank statements — that's the starting point.</li>
+          <li><strong>April reviews everything.</strong> You receive a legal opinion on your position: liens, terms, and any collection conduct that crosses a legal line.</li>
+          <li><strong>We map the options.</strong> Where it fits, we work with vetted, cooperative lenders to restructure the debt into something sustainable.</li>
+          <li><strong>You decide — informed.</strong> No pressure. You move forward only when the plan genuinely makes sense for the business.</li>
+        </ol>
+        <p style="color:var(--muted);font-size:.86rem;">A review is a starting conversation, not a commitment. The point is simply to know where you truly stand.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section-dark" id="how">
+  <div class="container">
+    <span class="eyebrow center reveal">How It Works</span>
+    <h2 class="section-title reveal">Three steps, <em>nothing hidden.</em></h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Apply</h3>
+        <p>Tell us about the business and what you need. The application is straightforward, and starting it puts you under no obligation.</p>
+      </div>
+      <div class="step-line reveal"></div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Review &amp; Offer</h3>
+        <p>We look at your revenue and bank activity to size a fair offer — and April reviews the agreement so you understand it before signing.</p>
+      </div>
+      <div class="step-line reveal"></div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Get Funded</h3>
+        <p>Once you're comfortable with the terms, you sign and funds typically reach your account within about a business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="section" id="why">
+  <div class="container">
+    <span class="eyebrow center reveal">Why Archangel</span>
+    <h2 class="section-title reveal">A funding partner that <em>actually answers to you.</em></h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">§</div>
+        <h3>An Attorney Reviews It</h3>
+        <p>Every agreement gets a lawyer's eyes before you sign. You'll know what the lien covers and how repayment is drawn.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">◆</div>
+        <h3>Vetted Lenders Only</h3>
+        <p>We work with a network of funders we've personally vetted — confirmed to keep their collection practices fully lawful.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">▲</div>
+        <h3>Straight Answers</h3>
+        <p>No buried fees, no rushed signatures. If something about a deal isn't right for you, we'll be the ones to say so.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">●</div>
+        <h3>Your Rights, Protected</h3>
+        <p>If a collection practice crosses a legal line, you'll have counsel who knows where that line is and will hold it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT APRIL ============ -->
+<section class="section section-dark" id="about">
+  <div class="container">
+    <div class="about-wrap">
+      <div class="about-text reveal">
+        <span class="eyebrow">About April</span>
+        <h2 class="section-title left">Funding is easy to find. <em>Good counsel isn't.</em></h2>
+        <p>Archangel Funding was built on a simple frustration: too many business owners sign merchant cash advance agreements without anyone ever explaining what they actually mean. By the time the daily withdrawals start to hurt, the paperwork is long signed.</p>
+        <p><strong>April Stone</strong> is a licensed attorney who works on the other side of that problem. She helps businesses get the capital they need <strong>and</strong> understand the agreement behind it — what the lien on future receivables covers, how repayment is drawn from the account, and what rights stay with the owner.</p>
+        <p>That's the whole idea here. Get you funded, yes — but never at the cost of signing something you didn't fully understand. When a deal isn't right, you'll hear it plainly. That kind of honesty is rarer in this industry than it should be, and it's the standard Archangel holds itself to.</p>
+        <div class="credentials">
+          <div class="cred-name">April Stone, Esq.</div>
+          <div class="cred-role">Founder &amp; Funding Counsel, Archangel Funding</div>
+        </div>
+        <a href="#" class="btn btn-primary" data-open-apply>Start an Application</a>
+      </div>
+      <div class="about-panel reveal">
+        <div class="about-stat"><span>Esq.</span><small>Attorney-Led</small></div>
+        <div class="about-stat"><span>24h</span><small>Typical Funding</small></div>
+        <div class="about-stat"><span>100%</span><small>Deals Reviewed</small></div>
+        <div class="about-stat"><span>Vetted</span><small>Lender Network</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <span class="eyebrow center reveal">Common Questions</span>
+    <h2 class="section-title reveal">Worth knowing <em>before you apply.</em></h2>
+    <div class="faq reveal">
+      <details>
+        <summary>Is a merchant cash advance the same as a loan?</summary>
+        <p>No, and the difference matters. A loan has a fixed payment and a set payoff date. A merchant cash advance is a purchase of your future receivables — repayment is a percentage of your sales, usually drawn directly from your business bank account, and it's secured by a lien on those future receivables. There's no fixed monthly bill. We make sure you understand exactly how that works for your account before anything is signed.</p>
+      </details>
+      <details>
+        <summary>What does "attorney-led review" actually get me?</summary>
+        <p>Before you sign, April reviews the funding agreement and gives you a plain-English legal opinion on it — what the lien covers, how the daily or weekly draw is calculated, and where your rights stand. Most business owners are never offered a lawyer's read of these documents. With Archangel, it's simply part of the process.</p>
+      </details>
+      <details>
+        <summary>I already have several advances. Can you help?</summary>
+        <p>Yes — that's what the MCA Debt Restructuring service is for. April reviews your existing agreements and gives you a legal opinion on your position, then, where it fits, works with vetted cooperative lenders to restructure the debt into a structure your cash flow can actually sustain. A review is a starting conversation, not a commitment.</p>
+      </details>
+      <details>
+        <summary>What do you mean by "vetted lenders"?</summary>
+        <p>Archangel only works with funders it has personally vetted. A large part of that vetting is confirming their collection practices are fully within the law. If a funder is known for aggressive or unlawful collection conduct, they're not in our network. That protects you, and it's not something most brokers bother to do.</p>
+      </details>
+      <details>
+        <summary>What are the basic requirements to apply?</summary>
+        <p>Generally we look for a business operating for at least six months, steady monthly revenue, and an active business bank account. Credit is considered but is rarely a disqualifier on its own. The quickest way to know where you stand is to start an application — it puts you under no obligation.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <div class="container">
+    <h2 class="reveal">Get funded — <em>with someone reading the fine print for you.</em></h2>
+    <p class="reveal">Start your application in minutes. No obligation, and an attorney reviews every agreement before you sign.</p>
+    <a href="#" class="btn btn-primary btn-lg reveal" data-open-apply>Apply for Funding</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#home" class="brand">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-name">Archangel <em>Funding</em></span>
+          <span class="brand-sub">Capital, with counsel.</span>
+        </span>
+      </a>
+      <p>Attorney-led merchant cash advance funding and MCA debt restructuring for businesses that deserve a straight answer.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <a href="#offer">Merchant Cash Advance</a>
+      <a href="#offer">Legal Review &amp; Opinion</a>
+      <a href="#restructuring">MCA Debt Restructuring</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#about">About April Stone</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="mailto:hello@archangelfunding.com">hello@archangelfunding.com</a>
+      <a href="tel:+18005550100">(800) 555-0100</a>
+      <span class="footer-hours">Mon–Fri, 9am–6pm ET</span>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>© 2026 Archangel Funding. All rights reserved.</span>
+    <span class="footer-disclaimer">Archangel Funding arranges merchant cash advances, which are purchases of future receivables and are not loans. Approval, amount, and terms depend on business revenue and qualifications. Legal review is provided as part of the funding process; specific legal advice depends on your individual circumstances.</span>
+  </div>
+</footer>
+
+<!-- ============ APPLY MODAL ============ -->
+<div class="modal-overlay" id="applyModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <div>
+        <div class="mh-title" id="modalTitle">Apply for Funding</div>
+        <div class="mh-sub">Reviewed by an attorney before you sign.</div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-progress" id="modalProgress" aria-hidden="true"></div>
+    <div class="modal-stepmeta" id="modalStepMeta">Step 1 of 8</div>
+
+    <div class="modal-body" id="modalBody">
+
+      <!-- STEP 1 — Quick Qualification -->
+      <div class="mstep active" data-step="1">
+        <h3>Quick qualification</h3>
+        <p class="step-hint">Takes about 15 seconds. This is enough for us to see your options.</p>
+        <label>Business Name
+          <input type="text" name="businessName" required placeholder="e.g. Northgate Construction">
+          <span class="field-error">Please enter your business name.</span>
+        </label>
+        <label>Monthly Revenue
+          <select name="monthlyRevenue" required>
+            <option value="">Select a range…</option>
+            <option>Under $15,000</option>
+            <option>$15,000 – $30,000</option>
+            <option>$30,000 – $75,000</option>
+            <option>$75,000 – $150,000</option>
+            <option>$150,000 – $500,000</option>
+            <option>$500,000+</option>
+          </select>
+          <span class="field-error">Please select your monthly revenue.</span>
+        </label>
+        <label>Time in Business
+          <select name="timeInBusiness" required>
+            <option value="">Select…</option>
+            <option>Less than 6 months</option>
+            <option>6 – 12 months</option>
+            <option>1 – 2 years</option>
+            <option>2 – 5 years</option>
+            <option>5+ years</option>
+          </select>
+          <span class="field-error">Please select time in business.</span>
+        </label>
+        <label>Desired Funding Amount
+          <select name="fundingAmount" required>
+            <option value="">Select a range…</option>
+            <option>$5,000 – $25,000</option>
+            <option>$25,000 – $75,000</option>
+            <option>$75,000 – $250,000</option>
+            <option>$250,000 – $1M</option>
+            <option>$1M+</option>
+          </select>
+          <span class="field-error">Please select a funding amount.</span>
+        </label>
+        <label>Industry
+          <select name="industry" required>
+            <option value="">Select…</option>
+            <option>Construction / Trades</option>
+            <option>Trucking / Transportation</option>
+            <option>Restaurant / Food Service</option>
+            <option>Retail</option>
+            <option>Healthcare</option>
+            <option>Auto Repair</option>
+            <option>Professional Services</option>
+            <option>E-commerce</option>
+            <option>Other</option>
+          </select>
+          <span class="field-error">Please select your industry.</span>
+        </label>
+      </div>
+
+      <!-- STEP 2 — Contact Information -->
+      <div class="mstep" data-step="2">
+        <h3>Contact information</h3>
+        <p class="step-hint">So your advisor can reach you about your options.</p>
+        <label>Owner Full Name
+          <input type="text" name="ownerName" required placeholder="Full legal name">
+          <span class="field-error">Please enter the owner's full name.</span>
+        </label>
+        <label>Phone Number
+          <input type="tel" name="phone" required placeholder="(555) 123-4567">
+          <span class="field-error">Please enter a valid phone number.</span>
+        </label>
+        <label>Email Address
+          <input type="email" name="email" required placeholder="you@business.com">
+          <span class="field-error">Please enter a valid email address.</span>
+        </label>
+      </div>
+
+      <!-- STEP 3 — Business Details -->
+      <div class="mstep" data-step="3">
+        <h3>Business details</h3>
+        <p class="step-hint">A bit more about the entity itself.</p>
+        <label>Entity Type
+          <select name="entityType" required>
+            <option value="">Select…</option>
+            <option>Sole Proprietorship</option>
+            <option>LLC</option>
+            <option>S-Corporation</option>
+            <option>C-Corporation</option>
+            <option>Partnership</option>
+            <option>Other</option>
+          </select>
+          <span class="field-error">Please select an entity type.</span>
+        </label>
+        <label>EIN / Tax ID
+          <input type="text" name="ein" required placeholder="XX-XXXXXXX">
+          <span class="field-error">Please enter your EIN / Tax ID.</span>
+        </label>
+        <label>Business Address
+          <input type="text" name="bizAddress" required placeholder="Street, City, State, ZIP">
+          <span class="field-error">Please enter your business address.</span>
+        </label>
+        <label>Business Phone
+          <input type="tel" name="bizPhone" required placeholder="(555) 123-4567">
+          <span class="field-error">Please enter your business phone.</span>
+        </label>
+        <div class="m-row">
+          <label>Website <span class="opt">(optional)</span>
+            <input type="text" name="website" placeholder="www.example.com">
+          </label>
+          <label>State of Incorporation <span class="opt">(optional)</span>
+            <input type="text" name="incState" placeholder="e.g. Florida">
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Ownership Details -->
+      <div class="mstep" data-step="4">
+        <h3>Ownership details</h3>
+        <p class="step-hint">Information on the primary owner of the business.</p>
+        <div class="m-row">
+          <label>Ownership %
+            <input type="number" name="ownPct" min="0" max="100" required placeholder="e.g. 100">
+            <span class="field-error">Enter a percentage.</span>
+          </label>
+          <label>Date of Birth
+            <input type="date" name="ownDob" required>
+            <span class="field-error">Enter a date of birth.</span>
+          </label>
+        </div>
+        <label>Social Security Number
+          <input type="text" name="ownSsn" required placeholder="XXX-XX-XXXX" inputmode="numeric">
+          <span class="field-error">Please enter the owner's SSN.</span>
+        </label>
+        <label>Home Address
+          <input type="text" name="ownAddress" required placeholder="Street, City, State, ZIP">
+          <span class="field-error">Please enter the owner's home address.</span>
+        </label>
+
+        <div style="margin-top:1.4rem;font-family:var(--display);font-size:.86rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);">Any additional owners?</div>
+        <div class="toggle-row" data-toggle="addOwners">
+          <button type="button" class="toggle-btn" data-val="yes">Yes</button>
+          <button type="button" class="toggle-btn sel" data-val="no">No</button>
+        </div>
+        <div id="ownersContainer"></div>
+        <button type="button" class="btn-add" id="addOwnerBtn" style="display:none">+ Add Another Owner</button>
+      </div>
+
+      <!-- STEP 5 — Existing Advances / Debt -->
+      <div class="mstep" data-step="5">
+        <h3>Existing advances &amp; debt</h3>
+        <p class="step-hint">This helps us understand your current position.</p>
+        <div style="font-family:var(--display);font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);">Do you currently have any active business funding?</div>
+        <div class="toggle-row" data-toggle="hasDebt">
+          <button type="button" class="toggle-btn" data-val="yes">Yes</button>
+          <button type="button" class="toggle-btn sel" data-val="no">No</button>
+        </div>
+        <div id="debtSection" style="display:none">
+          <div id="advancesContainer"></div>
+          <button type="button" class="btn-add" id="addAdvanceBtn">+ Add Another Advance</button>
+        </div>
+        <p id="debtSkipNote" style="color:var(--muted);font-size:.86rem;">No active funding — you can continue to the next step.</p>
+      </div>
+
+      <!-- STEP 6 — Document Upload -->
+      <div class="mstep" data-step="6">
+        <h3>Document upload</h3>
+        <p class="step-hint">Clear documents help us move quickly. You can also email these later if needed.</p>
+
+        <label>Last 3–6 Bank Statements
+          <div class="dropzone" data-drop="bankStatements">
+            <div class="dz-title">Drop files or tap to browse</div>
+            <div class="dz-hint">PDF or image · multiple files allowed</div>
+            <input type="file" hidden multiple accept=".pdf,image/*">
+          </div>
+          <div class="file-list" data-files="bankStatements"></div>
+        </label>
+
+        <label>Driver's License
+          <div class="dropzone" data-drop="license">
+            <div class="dz-title">Drop file or tap to browse</div>
+            <div class="dz-hint">PDF or image</div>
+            <input type="file" hidden accept=".pdf,image/*">
+          </div>
+          <div class="file-list" data-files="license"></div>
+        </label>
+
+        <label>Voided Check
+          <div class="dropzone" data-drop="voidedCheck">
+            <div class="dz-title">Drop file or tap to browse</div>
+            <div class="dz-hint">PDF or image</div>
+            <input type="file" hidden accept=".pdf,image/*">
+          </div>
+          <div class="file-list" data-files="voidedCheck"></div>
+        </label>
+
+        <label>Merchant Statements <span class="opt">(optional)</span>
+          <div class="dropzone" data-drop="merchantStatements">
+            <div class="dz-title">Drop files or tap to browse</div>
+            <div class="dz-hint">PDF or image · multiple files allowed</div>
+            <input type="file" hidden multiple accept=".pdf,image/*">
+          </div>
+          <div class="file-list" data-files="merchantStatements"></div>
+        </label>
+      </div>
+
+      <!-- STEP 7 — Review & Consent -->
+      <div class="mstep" data-step="7">
+        <h3>Review &amp; consent</h3>
+        <p class="step-hint">A quick look at what you've entered before you sign.</p>
+        <div id="reviewSummary"></div>
+        <label class="m-check">
+          <input type="checkbox" name="certify" required>
+          <span>I certify that the information provided is accurate and complete to the best of my knowledge.</span>
+        </label>
+        <label class="m-check">
+          <input type="checkbox" name="softpull" required>
+          <span>I authorize Archangel Funding to obtain a soft credit pull, which does not affect my credit score.</span>
+        </label>
+        <label class="m-check">
+          <input type="checkbox" name="econsent" required>
+          <span>I agree to receive electronic communications regarding my application.</span>
+        </label>
+        <span class="field-error" id="consentError">Please check all three boxes to continue.</span>
+      </div>
+
+      <!-- STEP 8 — E-Signature -->
+      <div class="mstep" data-step="8">
+        <h3>Electronic signature</h3>
+        <p class="step-hint">Your signature authorizes Archangel Funding to review your application.</p>
+        <label>Typed Full Name
+          <input type="text" name="sigName" required placeholder="Type your full legal name">
+          <span class="field-error">Please type your full name.</span>
+        </label>
+        <label>Signature
+          <div class="sig-wrap">
+            <canvas class="sig-pad" id="sigPad" width="600" height="130"></canvas>
+            <div class="sig-tools">
+              <span class="sig-label">Sign above with your mouse or finger</span>
+              <button type="button" id="sigClear">Clear</button>
+            </div>
+          </div>
+          <span class="field-error" id="sigError">Please provide a signature.</span>
+        </label>
+        <label>Date
+          <input type="text" name="sigDate" id="sigDate" readonly>
+        </label>
+      </div>
+
+    </div><!-- /modal-body -->
+
+    <div class="modal-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>This application collects sensitive information. <strong>Demo notice:</strong> this site has no backend yet — submissions are not transmitted or stored. Connect a secure endpoint before collecting real applications.</span>
+    </div>
+
+    <div class="modal-foot" id="modalFoot">
+      <button type="button" class="btn btn-ghost" id="modalBack" style="visibility:hidden">Back</button>
+      <button type="button" class="btn btn-primary" id="modalNext">See Your Options</button>
+    </div>
+
+    <!-- success -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-mark">✓</div>
+      <h3>Application received</h3>
+      <p>Thank you. April or a funding advisor will review your application and reach out — typically within one business day.</p>
+      <p style="margin-top:.8rem;font-size:.82rem;">You may now close this window.</p>
+    </div>
+
+  </div><!-- /modal -->
+</div>
+
+<script>
+/* ============================================================
+   ARCHANGEL FUNDING — interaction script
+   ============================================================ */
+(function(){
+  "use strict";
+
+  /* ---------- THEME TOGGLE ---------- */
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('themeToggle');
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    themeToggle.innerHTML = (t === 'dark') ? SUN : MOON;
+    themeToggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  setTheme('dark');
+  themeToggle.addEventListener('click', function(){
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---------- NAV: scroll state ---------- */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, {passive:true});
+
+  /* ---------- NAV: mobile menu ---------- */
+  var navToggle = document.getElementById('navToggle');
+  var navMobile = document.getElementById('navMobile');
+  function closeMenu(){
+    navMobile.style.display = 'none';
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  }
+  function openMenu(){
+    navMobile.style.display = 'flex';
+    navToggle.classList.add('open');
+    navToggle.setAttribute('aria-expanded','true');
+  }
+  navToggle.addEventListener('click', function(){
+    if(navToggle.classList.contains('open')) closeMenu(); else openMenu();
+  });
+  navMobile.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+  // keep menu state sane on resize
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 1000) closeMenu();
+  });
+
+  /* ---------- NAV: active link on scroll ---------- */
+  var sections = ['home','offer','restructuring','how','about','faq'];
+  var navLinks = document.querySelectorAll('#navLinks a');
+  function syncActive(){
+    var pos = window.scrollY + 120, current = sections[0];
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop <= pos) current = id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('is-active', a.getAttribute('href') === '#'+current);
+    });
+  }
+  window.addEventListener('scroll', syncActive, {passive:true});
+  syncActive();
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ============================================================
+     APPLY MODAL
+     ============================================================ */
+  var modal = document.getElementById('applyModal');
+  var modalBody = document.getElementById('modalBody');
+  var modalFoot = document.getElementById('modalFoot');
+  var modalNote = document.querySelector('.modal-note');
+  var backBtn = document.getElementById('modalBack');
+  var nextBtn = document.getElementById('modalNext');
+  var progress = document.getElementById('modalProgress');
+  var stepMeta = document.getElementById('modalStepMeta');
+  var successBox = document.getElementById('modalSuccess');
+  var TOTAL = 8;
+  var current = 1;
+
+  // step CTA labels (per spec)
+  var CTA = {
+    1:'See Your Options',
+    2:'Continue Securely',
+    3:'Continue',
+    4:'Continue',
+    5:'Continue',
+    6:'Continue',
+    7:'Continue',
+    8:'Submit Application'
+  };
+
+  // build progress segments
+  for(var i=0;i<TOTAL;i++){
+    var seg = document.createElement('span');
+    seg.className = 'mp-seg';
+    progress.appendChild(seg);
+  }
+  var segs = progress.querySelectorAll('.mp-seg');
+
+  function showStep(n){
+    current = n;
+    modalBody.querySelectorAll('.mstep').forEach(function(s){
+      s.classList.toggle('active', +s.dataset.step === n);
+    });
+    segs.forEach(function(s,idx){
+      s.classList.remove('done','active');
+      if(idx < n-1) s.classList.add('done');
+      else if(idx === n-1) s.classList.add('active');
+    });
+    stepMeta.textContent = 'Step ' + n + ' of ' + TOTAL;
+    backBtn.style.visibility = (n === 1) ? 'hidden' : 'visible';
+    nextBtn.textContent = CTA[n];
+    if(n === 7) buildReview();
+    if(n === 8) requestAnimationFrame(fitCanvas);
+    modalBody.scrollTop = 0;
+  }
+
+  function openModal(){
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    successBox.classList.remove('show');
+    modalBody.style.display = '';
+    modalFoot.style.display = '';
+    modalNote.style.display = '';
+    progress.style.display = '';
+    stepMeta.style.display = '';
+    showStep(1);
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-open-apply]').forEach(function(b){
+    b.addEventListener('click', function(e){ e.preventDefault(); closeMenu(); openModal(); });
+  });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  /* ---------- validation ---------- */
+  function markError(field, on){
+    field.classList.toggle('err', on);
+    var err = field.parentElement.querySelector('.field-error');
+    if(err) err.classList.toggle('show', on);
+  }
+  function validateStep(n){
+    var stepEl = modalBody.querySelector('.mstep[data-step="'+n+'"]');
+    var ok = true;
+
+    // step 7: the three consent checkboxes
+    if(n === 7){
+      var boxes = stepEl.querySelectorAll('input[type="checkbox"]');
+      var allChecked = true;
+      boxes.forEach(function(b){ if(!b.checked) allChecked = false; });
+      document.getElementById('consentError').classList.toggle('show', !allChecked);
+      return allChecked;
+    }
+
+    // step 8: typed name + signature drawn
+    if(n === 8){
+      var nameField = stepEl.querySelector('input[name="sigName"]');
+      if(!nameField.value.trim()){ markError(nameField, true); ok = false; }
+      else markError(nameField, false);
+      document.getElementById('sigError').classList.toggle('show', !sigHasInk);
+      if(!sigHasInk) ok = false;
+      return ok;
+    }
+
+    // generic: required fields that are currently visible
+    stepEl.querySelectorAll('input[required],select[required]').forEach(function(f){
+      if(f.offsetParent === null) return; // skip hidden (e.g. collapsed owner cards)
+      var val = f.value.trim();
+      var bad = !val;
+      if(!bad && f.type === 'email') bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if(!bad && f.type === 'tel') bad = val.replace(/\D/g,'').length < 7;
+      markError(f, bad);
+      if(bad) ok = false;
+    });
+    return ok;
+  }
+  // clear error as the user fixes a field
+  modalBody.addEventListener('input', function(e){
+    if(e.target.matches('input,select,textarea')) markError(e.target, false);
+  });
+
+  /* ---------- nav buttons ---------- */
+  nextBtn.addEventListener('click', function(){
+    if(!validateStep(current)) return;
+    if(current === TOTAL){ submitApplication(); return; }
+    showStep(current + 1);
+  });
+  backBtn.addEventListener('click', function(){
+    if(current > 1) showStep(current - 1);
+  });
+
+  /* ---------- yes/no toggles ---------- */
+  document.querySelectorAll('[data-toggle]').forEach(function(group){
+    var name = group.dataset.toggle;
+    group.querySelectorAll('.toggle-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.toggle-btn').forEach(function(b){ b.classList.remove('sel'); });
+        btn.classList.add('sel');
+        handleToggle(name, btn.dataset.val);
+      });
+    });
+  });
+  function handleToggle(name, val){
+    if(name === 'addOwners'){
+      var addBtn = document.getElementById('addOwnerBtn');
+      var cont = document.getElementById('ownersContainer');
+      if(val === 'yes'){
+        addBtn.style.display = 'block';
+        if(!cont.children.length) addOwner();
+      } else {
+        addBtn.style.display = 'none';
+        cont.innerHTML = '';
+      }
+    }
+    if(name === 'hasDebt'){
+      var sect = document.getElementById('debtSection');
+      var note = document.getElementById('debtSkipNote');
+      var advCont = document.getElementById('advancesContainer');
+      if(val === 'yes'){
+        sect.style.display = 'block';
+        note.style.display = 'none';
+        if(!advCont.children.length) addAdvance();
+      } else {
+        sect.style.display = 'none';
+        note.style.display = 'block';
+        advCont.innerHTML = '';
+      }
+    }
+  }
+
+  /* ---------- dynamic: additional owners ---------- */
+  var ownerCount = 0;
+  function addOwner(){
+    ownerCount++;
+    var cont = document.getElementById('ownersContainer');
+    var card = document.createElement('div');
+    card.className = 'dyn-card';
+    card.innerHTML =
+      '<button type="button" class="dyn-remove" aria-label="Remove owner">✕</button>' +
+      '<div class="dyn-title">Additional Owner</div>' +
+      '<label>Full Name<input type="text" placeholder="Full legal name"></label>' +
+      '<div class="m-row">' +
+        '<label>Ownership %<input type="number" min="0" max="100" placeholder="%"></label>' +
+        '<label>Date of Birth<input type="date"></label>' +
+      '</div>' +
+      '<label>SSN<input type="text" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>' +
+      '<label>Home Address<input type="text" placeholder="Street, City, State, ZIP"></label>';
+    card.querySelector('.dyn-remove').addEventListener('click', function(){ card.remove(); });
+    cont.appendChild(card);
+  }
+  document.getElementById('addOwnerBtn').addEventListener('click', addOwner);
+
+  /* ---------- dynamic: existing advances ---------- */
+  function addAdvance(){
+    var cont = document.getElementById('advancesContainer');
+    var card = document.createElement('div');
+    card.className = 'dyn-card';
+    card.innerHTML =
+      '<button type="button" class="dyn-remove" aria-label="Remove advance">✕</button>' +
+      '<div class="dyn-title">Active Advance</div>' +
+      '<label>Funder Name<input type="text" placeholder="Funding company"></label>' +
+      '<div class="m-row">' +
+        '<label>Original Amount<input type="text" placeholder="$"></label>' +
+        '<label>Current Balance<input type="text" placeholder="$"></label>' +
+      '</div>' +
+      '<div class="m-row">' +
+        '<label>Payment Frequency<select>' +
+          '<option value="">Select…</option><option>Daily</option><option>Weekly</option><option>Monthly</option>' +
+        '</select></label>' +
+        '<label>Payoff Date<input type="date"></label>' +
+      '</div>';
+    card.querySelector('.dyn-remove').addEventListener('click', function(){ card.remove(); });
+    cont.appendChild(card);
+  }
+  document.getElementById('addAdvanceBtn').addEventListener('click', addAdvance);
+
+  /* ---------- file upload (dropzones) ---------- */
+  document.querySelectorAll('.dropzone').forEach(function(zone){
+    var input = zone.querySelector('input[type="file"]');
+    var key = zone.dataset.drop;
+    var list = document.querySelector('.file-list[data-files="'+key+'"]');
+
+    zone.addEventListener('click', function(){ input.click(); });
+    zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('drag'); });
+    zone.addEventListener('dragleave', function(){ zone.classList.remove('drag'); });
+    zone.addEventListener('drop', function(e){
+      e.preventDefault(); zone.classList.remove('drag');
+      addFiles(e.dataTransfer.files);
+    });
+    input.addEventListener('change', function(){ addFiles(input.files); });
+
+    function addFiles(files){
+      Array.prototype.forEach.call(files, function(f){
+        var chip = document.createElement('div');
+        chip.className = 'file-chip';
+        var kb = Math.max(1, Math.round(f.size/1024));
+        chip.innerHTML = '<span>'+escapeHtml(f.name)+' · '+kb+' KB</span>' +
+                         '<button type="button" aria-label="Remove file">✕</button>';
+        chip.querySelector('button').addEventListener('click', function(){ chip.remove(); });
+        list.appendChild(chip);
+      });
+      input.value = '';
+    }
+  });
+
+  /* ---------- review summary (step 7) ---------- */
+  function val(name){
+    var f = modalBody.querySelector('[name="'+name+'"]');
+    return f && f.value.trim() ? f.value.trim() : '—';
+  }
+  function row(k,v){
+    return '<div class="review-row"><span class="rk">'+k+'</span><span class="rv">'+escapeHtml(v)+'</span></div>';
+  }
+  function buildReview(){
+    var docCount = modalBody.querySelectorAll('.file-chip').length;
+    var advCount = document.getElementById('advancesContainer').children.length;
+    var ownerExtra = document.getElementById('ownersContainer').children.length;
+    var html = '';
+    html += '<div class="review-card"><h4>Funding Request</h4>' +
+            row('Amount', val('fundingAmount')) +
+            row('Industry', val('industry')) +
+            row('Monthly Revenue', val('monthlyRevenue')) + '</div>';
+    html += '<div class="review-card"><h4>Business</h4>' +
+            row('Name', val('businessName')) +
+            row('Entity Type', val('entityType')) +
+            row('Time in Business', val('timeInBusiness')) +
+            row('EIN / Tax ID', val('ein')) + '</div>';
+    html += '<div class="review-card"><h4>Owner</h4>' +
+            row('Name', val('ownerName')) +
+            row('Ownership %', val('ownPct')) +
+            row('Email', val('email')) +
+            row('Phone', val('phone')) +
+            row('Additional Owners', ownerExtra ? String(ownerExtra) : 'None') + '</div>';
+    html += '<div class="review-card"><h4>Position</h4>' +
+            row('Active Advances Listed', advCount ? String(advCount) : 'None') +
+            row('Documents Uploaded', docCount ? String(docCount) : 'None yet') + '</div>';
+    document.getElementById('reviewSummary').innerHTML = html;
+  }
+
+  /* ---------- signature pad ---------- */
+  var sigHasInk = false;
+  var canvas = document.getElementById('sigPad');
+  var sigClear = document.getElementById('sigClear');
+  var ctx = canvas.getContext('2d');
+  var sigRatio = 1;
+
+  function styleCtx(){
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    var ink = getComputedStyle(root).getPropertyValue('--ink').trim();
+    ctx.strokeStyle = ink || '#ffffff';
+  }
+  function fitCanvas(){
+    var rect = canvas.getBoundingClientRect();
+    if(rect.width === 0) return;            // not visible yet
+    sigRatio = window.devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width * sigRatio);
+    canvas.height = Math.round(rect.height * sigRatio);
+    ctx = canvas.getContext('2d');          // re-fetch after size change
+    ctx.setTransform(sigRatio, 0, 0, sigRatio, 0, 0);
+    styleCtx();
+    sigHasInk = false;                      // canvas was cleared by resize
+  }
+  var drawing = false;
+  function pos(e){
+    var r = canvas.getBoundingClientRect();
+    var p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    // ctx transform already scales by sigRatio, so work in CSS pixels
+    return { x: p.clientX - r.left, y: p.clientY - r.top };
+  }
+  function start(e){ drawing = true; var p = pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); e.preventDefault(); }
+  function move(e){
+    if(!drawing) return;
+    var p = pos(e); ctx.lineTo(p.x,p.y); ctx.stroke();
+    sigHasInk = true;
+    document.getElementById('sigError').classList.remove('show');
+    e.preventDefault();
+  }
+  function end(){ drawing = false; }
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', end);
+  canvas.addEventListener('touchstart', start, {passive:false});
+  canvas.addEventListener('touchmove', move, {passive:false});
+  canvas.addEventListener('touchend', end);
+  sigClear.addEventListener('click', function(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    sigHasInk = false;
+  });
+
+  /* ---------- submit ---------- */
+  function submitApplication(){
+    /* ----------------------------------------------------------
+       NO BACKEND CONNECTED.
+       To make this live, send the collected data to a SECURE
+       endpoint here (this form gathers SSN, EIN and bank docs —
+       it must go over an encrypted connection, e.g. a CRM intake
+       API or a service such as Formspree). Example:
+
+         var data = new FormData();
+         // ...append fields and files...
+         fetch('https://YOUR-SECURE-ENDPOINT', {method:'POST', body:data});
+
+       Until then, we just show the success screen.
+       ---------------------------------------------------------- */
+    progress.style.display = 'none';
+    stepMeta.style.display = 'none';
+    modalBody.style.display = 'none';
+    modalFoot.style.display = 'none';
+    modalNote.style.display = 'none';
+    successBox.classList.add('show');
+  }
+
+  /* ---------- helpers ---------- */
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  /* ---------- init ---------- */
+  // auto-fill signature date
+  var d = new Date();
+  document.getElementById('sigDate').value =
+    d.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  // size signature canvas once layout settles
+  styleCtx();
+  window.addEventListener('load', fitCanvas);
+  window.addEventListener('resize', fitCanvas);
+  fitCanvas();
+
+})();
+</script>
+</body>
+</html>
