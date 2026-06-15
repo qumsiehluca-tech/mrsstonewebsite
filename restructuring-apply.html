@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Restructuring Review — Archangel Funding</title>
-<meta name="description" content="Archangel Funding provides merchant cash advances with attorney-led legal review, led by April Stone, Esq. Working capital, reviewed before you sign.">
+<title>Restructuring Review — Archangel Finance</title>
+<meta name="description" content="Archangel Finance provides merchant cash advances with attorney-led legal review. Working capital, reviewed before you sign.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- VERSION A — Law firm: Cormorant Garamond headlines + Inter body -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   ARCHANGEL FUNDING — shared stylesheet (inlined on every page)
+   ARCHANGEL FINANCE — shared stylesheet (inlined on every page)
    Restrained, attorney-led. Device-aware light/dark + toggle.
    ============================================================ */
 
@@ -426,6 +426,44 @@ h3{font-size:1.42rem}
   font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gold);margin-bottom:.9rem;
 }
+.dcard .dc-title .opt{
+  font-size:.65rem;letter-spacing:.06em;color:var(--muted);font-weight:500;
+  margin-left:.4rem;text-transform:none;
+}
+/* owners 2x2 grid */
+.owners-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.owners-grid .dcard{margin-bottom:0}
+@media (max-width:760px){
+  .owners-grid{grid-template-columns:1fr}
+}
+/* debt table */
+.debt-table-wrap{overflow-x:auto;margin-bottom:.8rem;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--surface-2);}
+.debt-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:760px}
+.debt-table thead th{
+  background:var(--surface-2);color:var(--muted);
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:.7rem .55rem;text-align:left;border-bottom:1px solid var(--line);
+}
+.debt-table tbody td{padding:.45rem .35rem;vertical-align:top;border-bottom:1px solid var(--line)}
+.debt-table tbody tr:last-child td{border-bottom:none}
+.debt-table input,.debt-table select{
+  width:100%;padding:.55rem .6rem;background:var(--field);
+  border:1px solid var(--line-strong);border-radius:var(--radius);
+  color:var(--ink);font-family:var(--body);font-size:.85rem;
+}
+.debt-table input:focus,.debt-table select:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(156,124,60,.14);
+}
+.debt-table td.dt-rm{width:36px;text-align:center;padding:.45rem .25rem}
+.debt-table .dt-remove{
+  width:28px;height:28px;border:1px solid var(--line-strong);background:var(--field);
+  border-radius:var(--radius);color:var(--muted);cursor:pointer;font-size:.85rem;
+}
+.debt-table .dt-remove:hover{border-color:#b2382c;color:#b2382c}
+@media (max-width:560px){
+  .debt-table-wrap .debt-table{min-width:660px}
+}
 .dc-remove{
   position:absolute;top:.8rem;right:.8rem;width:26px;height:26px;
   border:1px solid var(--line-strong);background:var(--field);border-radius:var(--radius);
@@ -535,7 +573,7 @@ h3{font-size:1.42rem}
     <a href="index.html" class="brand">
       <span class="brand-mark" aria-hidden="true">A</span>
       <span class="brand-text">
-        <span class="brand-name">Archangel Funding</span>
+        <span class="brand-name">Archangel Finance</span>
         <span class="brand-sub">Capital, with counsel</span>
       </span>
     </a>
@@ -570,97 +608,223 @@ h3{font-size:1.42rem}
     <div class="apply-head reveal" style="max-width:62ch">
       <span class="kicker">Restructuring Review</span>
       <h1 style="font-size:clamp(2.2rem,4.4vw,3.2rem)">Start a restructuring review.</h1>
-      <p class="lede">A short intake. April will read your existing agreements and balances, then come back with a legal opinion on where the business stands and what can be done. It is a starting conversation, not a commitment.</p>
+      <p class="lede">A short intake. An attorney will read your existing agreements and balances, then come back with a legal opinion on where the business stands and what can be done. It is a starting conversation, not a commitment.</p>
     </div>
 
     <div class="apply-grid" id="applyGrid">
       <div class="rail" id="rail">
-        <div class="rail-item active" data-r="1"><span class="rail-dot">1</span><span class="rail-label"><span class="rail-step">Step One</span>Your Situation</span></div>
-        <div class="rail-item" data-r="2"><span class="rail-dot">2</span><span class="rail-label"><span class="rail-step">Step Two</span>Documents & Contact</span></div>
-        <div class="rail-item" data-r="3"><span class="rail-dot">3</span><span class="rail-label"><span class="rail-step">Step Three</span>Review & Send</span></div>
+        <div class="rail-item active" data-r="1"><span class="rail-dot">1</span><span class="rail-label"><span class="rail-step">Step One</span>Business Info</span></div>
+        <div class="rail-item" data-r="2"><span class="rail-dot">2</span><span class="rail-label"><span class="rail-step">Step Two</span>Ownership</span></div>
+        <div class="rail-item" data-r="3"><span class="rail-dot">3</span><span class="rail-label"><span class="rail-step">Step Three</span>Current Debt</span></div>
+        <div class="rail-item" data-r="4"><span class="rail-dot">4</span><span class="rail-label"><span class="rail-step">Step Four</span>Documents</span></div>
+        <div class="rail-item" data-r="5"><span class="rail-dot">5</span><span class="rail-label"><span class="rail-step">Step Five</span>Consent & Signature</span></div>
       </div>
 
       <div class="form-card" id="formCard">
 
-        <!-- STEP 1 -->
+        <!-- STEP 1 — Business Information -->
         <div class="fstep active" data-step="1">
-          <h2>Your situation</h2>
-          <p class="step-sub">A few things to help April understand where things stand.</p>
-          <label class="fld"><span class="fld-label">Business Name</span>
+          <h2>Business information</h2>
+          <p class="step-sub">A short start. This is the entity an attorney will review.</p>
+          <label class="fld"><span class="fld-label">Company Name</span>
             <input type="text" name="businessName" required placeholder="Legal business name">
-            <span class="ferr">Please enter your business name.</span></label>
-          <label class="fld"><span class="fld-label">Number of Active Advances</span>
-            <select name="advCount" required>
-              <option value="">Select</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option>
-              <option>5 or more</option>
-            </select><span class="ferr">Please select.</span></label>
-          <label class="fld"><span class="fld-label">Approximate Total Outstanding Balance</span>
-            <select name="totalBalance" required>
-              <option value="">Select a range</option>
-              <option>Under $25,000</option>
-              <option>$25,000 to $75,000</option>
-              <option>$75,000 to $200,000</option>
-              <option>$200,000 to $500,000</option>
-              <option>$500,000 or more</option>
-              <option>Not sure</option>
-            </select><span class="ferr">Please select a range.</span></label>
-          <label class="fld"><span class="fld-label">How would you describe the current pressure on the business?</span>
-            <select name="pressure" required>
-              <option value="">Select</option>
-              <option>Manageable, but want to plan ahead</option>
-              <option>Tight — daily draws are noticeable</option>
-              <option>Difficult — affecting payroll or operations</option>
-              <option>Urgent — at risk of default</option>
-            </select><span class="ferr">Please select.</span></label>
-          <label class="fld"><span class="fld-label">Have you experienced any collection practices that concerned you? <span class="opt">(optional)</span></span>
-            <textarea name="collectionNotes" rows="3" placeholder="Briefly describe, if relevant"></textarea></label>
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="fstep" data-step="2">
-          <h2>Documents and contact</h2>
-          <p class="step-sub">The agreements and recent statements are what April needs to start. Contact details so she can reach you.</p>
-
-          <label class="fld"><span class="fld-label">Existing Advance Agreements <span class="opt">(any you have)</span></span>
-            <div class="drop" data-drop="agreements"><div class="drop-t">Drop files or tap to browse</div>
-              <div class="drop-h">PDF or image, multiple files allowed</div>
-              <input type="file" hidden multiple accept=".pdf,image/*"></div>
-            <div class="flist" data-files="agreements"></div></label>
-
-          <label class="fld"><span class="fld-label">Recent Bank Statements <span class="opt">(last 3 months)</span></span>
-            <div class="drop" data-drop="bank"><div class="drop-t">Drop files or tap to browse</div>
-              <div class="drop-h">PDF or image, multiple files allowed</div>
-              <input type="file" hidden multiple accept=".pdf,image/*"></div>
-            <div class="flist" data-files="bank"></div></label>
-
-          <p style="color:var(--muted);font-size:.86rem;margin:1rem 0 1.4rem;">No documents on hand? You can still continue — April will follow up about what to send.</p>
-
-          <label class="fld"><span class="fld-label">Your Name</span>
-            <input type="text" name="ownerName" required placeholder="Full name">
-            <span class="ferr">Please enter your name.</span></label>
+            <span class="ferr">Please enter your company name.</span></label>
           <div class="frow">
-            <label class="fld"><span class="fld-label">Phone</span>
-              <input type="tel" name="phone" required placeholder="(555) 123-4567">
-              <span class="ferr">Please enter a phone number.</span></label>
-            <label class="fld"><span class="fld-label">Email</span>
-              <input type="email" name="email" required placeholder="you@business.com">
-              <span class="ferr">Please enter a valid email.</span></label>
+            <label class="fld"><span class="fld-label">Entity Type</span>
+              <select name="entityType" required>
+                <option value="">Select</option>
+                <option>Sole Proprietorship</option><option>LLC</option><option>S-Corporation</option>
+                <option>C-Corporation</option><option>Partnership</option><option>Other</option>
+              </select><span class="ferr">Please select an entity type.</span></label>
+            <label class="fld"><span class="fld-label">Industry</span>
+              <select name="industry" required>
+                <option value="">Select</option>
+                <option>Construction and Trades</option><option>Trucking and Transportation</option>
+                <option>Restaurant and Food Service</option><option>Retail</option><option>Healthcare</option>
+                <option>Auto Repair</option><option>Professional Services</option><option>E-commerce</option><option>Other</option>
+              </select><span class="ferr">Please select your industry.</span></label>
           </div>
-          <label class="fld"><span class="fld-label">Best time to reach you <span class="opt">(optional)</span></span>
-            <input type="text" name="bestTime" placeholder="e.g. weekday mornings"></label>
+          <div class="frow">
+            <label class="fld"><span class="fld-label">Tax ID / EIN</span>
+              <input type="text" name="ein" required placeholder="XX-XXXXXXX">
+              <span class="ferr">Please enter your EIN or Tax ID.</span></label>
+            <label class="fld"><span class="fld-label">Annual Revenue</span>
+              <select name="annualRevenue" required>
+                <option value="">Select a range</option>
+                <option>Under $150,000</option><option>$150,000 to $500,000</option>
+                <option>$500,000 to $1M</option><option>$1M to $3M</option>
+                <option>$3M to $10M</option><option>$10M or more</option>
+              </select><span class="ferr">Please select annual revenue.</span></label>
+          </div>
+          <div class="frow">
+            <label class="fld"><span class="fld-label">Time in Business</span>
+              <select name="timeInBusiness" required>
+                <option value="">Select</option>
+                <option>Less than 6 months</option><option>6 to 12 months</option>
+                <option>1 to 2 years</option><option>2 to 5 years</option><option>5 or more years</option>
+              </select><span class="ferr">Please select time in business.</span></label>
+            <label class="fld"><span class="fld-label">Business Phone</span>
+              <input type="tel" name="bizPhone" required placeholder="(555) 123-4567">
+              <span class="ferr">Please enter a business phone.</span></label>
+          </div>
+          <label class="fld"><span class="fld-label">Business Address</span>
+            <input type="text" name="bizAddress" required placeholder="Street, City, State, ZIP">
+            <span class="ferr">Please enter your business address.</span></label>
         </div>
 
-        <!-- STEP 3 -->
+        <!-- STEP 2 — Owner Information -->
+        <div class="fstep" data-step="2">
+          <h2>Owner information</h2>
+          <p class="step-sub">Information on the owners of the business. The first owner is required; up to four may be listed.</p>
+
+          <div class="owners-grid">
+            <!-- FIRST OWNER -->
+            <div class="dcard owner-card">
+              <div class="dc-title">First Owner</div>
+              <label class="fld"><span class="fld-label">Ownership %</span>
+                <input type="number" name="own1Pct" min="0" max="100" required placeholder="e.g. 100">
+                <span class="ferr">Enter a percentage.</span></label>
+              <label class="fld"><span class="fld-label">Full Name</span>
+                <input type="text" name="own1Name" required placeholder="Full legal name">
+                <span class="ferr">Please enter the owner's full name.</span></label>
+              <label class="fld"><span class="fld-label">Date of Birth</span>
+                <input type="date" name="own1Dob" required>
+                <span class="ferr">Enter a date of birth.</span></label>
+              <label class="fld"><span class="fld-label">SSN</span>
+                <input type="text" name="own1Ssn" required placeholder="XXX-XX-XXXX" inputmode="numeric">
+                <span class="ferr">Please enter the owner's SSN.</span></label>
+              <label class="fld"><span class="fld-label">Phone</span>
+                <input type="tel" name="own1Phone" required placeholder="(555) 123-4567">
+                <span class="ferr">Please enter a valid phone number.</span></label>
+              <label class="fld"><span class="fld-label">Home Address</span>
+                <input type="text" name="own1Address" required placeholder="Street, City, State, ZIP">
+                <span class="ferr">Please enter the owner's home address.</span></label>
+              <label class="fld"><span class="fld-label">Email</span>
+                <input type="email" name="own1Email" required placeholder="owner@example.com">
+                <span class="ferr">Please enter a valid email.</span></label>
+            </div>
+
+            <!-- SECOND OWNER -->
+            <div class="dcard owner-card">
+              <div class="dc-title">Second Owner <span class="opt">(optional)</span></div>
+              <label class="fld"><span class="fld-label">Ownership %</span>
+                <input type="number" name="own2Pct" min="0" max="100" placeholder="%"></label>
+              <label class="fld"><span class="fld-label">Full Name</span>
+                <input type="text" name="own2Name" placeholder="Full legal name"></label>
+              <label class="fld"><span class="fld-label">Date of Birth</span>
+                <input type="date" name="own2Dob"></label>
+              <label class="fld"><span class="fld-label">SSN</span>
+                <input type="text" name="own2Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+              <label class="fld"><span class="fld-label">Phone</span>
+                <input type="tel" name="own2Phone" placeholder="(555) 123-4567"></label>
+              <label class="fld"><span class="fld-label">Home Address</span>
+                <input type="text" name="own2Address" placeholder="Street, City, State, ZIP"></label>
+              <label class="fld"><span class="fld-label">Email</span>
+                <input type="email" name="own2Email" placeholder="owner@example.com"></label>
+            </div>
+
+            <!-- THIRD OWNER -->
+            <div class="dcard owner-card">
+              <div class="dc-title">Third Owner <span class="opt">(optional)</span></div>
+              <label class="fld"><span class="fld-label">Ownership %</span>
+                <input type="number" name="own3Pct" min="0" max="100" placeholder="%"></label>
+              <label class="fld"><span class="fld-label">Full Name</span>
+                <input type="text" name="own3Name" placeholder="Full legal name"></label>
+              <label class="fld"><span class="fld-label">Date of Birth</span>
+                <input type="date" name="own3Dob"></label>
+              <label class="fld"><span class="fld-label">SSN</span>
+                <input type="text" name="own3Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+              <label class="fld"><span class="fld-label">Phone</span>
+                <input type="tel" name="own3Phone" placeholder="(555) 123-4567"></label>
+              <label class="fld"><span class="fld-label">Home Address</span>
+                <input type="text" name="own3Address" placeholder="Street, City, State, ZIP"></label>
+              <label class="fld"><span class="fld-label">Email</span>
+                <input type="email" name="own3Email" placeholder="owner@example.com"></label>
+            </div>
+
+            <!-- FOURTH OWNER -->
+            <div class="dcard owner-card">
+              <div class="dc-title">Fourth Owner <span class="opt">(optional)</span></div>
+              <label class="fld"><span class="fld-label">Ownership %</span>
+                <input type="number" name="own4Pct" min="0" max="100" placeholder="%"></label>
+              <label class="fld"><span class="fld-label">Full Name</span>
+                <input type="text" name="own4Name" placeholder="Full legal name"></label>
+              <label class="fld"><span class="fld-label">Date of Birth</span>
+                <input type="date" name="own4Dob"></label>
+              <label class="fld"><span class="fld-label">SSN</span>
+                <input type="text" name="own4Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+              <label class="fld"><span class="fld-label">Phone</span>
+                <input type="tel" name="own4Phone" placeholder="(555) 123-4567"></label>
+              <label class="fld"><span class="fld-label">Home Address</span>
+                <input type="text" name="own4Address" placeholder="Street, City, State, ZIP"></label>
+              <label class="fld"><span class="fld-label">Email</span>
+                <input type="email" name="own4Email" placeholder="owner@example.com"></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 — Current Debt Obligations -->
         <div class="fstep" data-step="3">
-          <h2>Review and send</h2>
-          <p class="step-sub">A quick look at what April will see.</p>
+          <h2>Current debt obligations</h2>
+          <p class="step-sub">List the existing advances, loans, and other obligations the business carries. Add a row for each.</p>
+          <div class="debt-table-wrap">
+            <table class="debt-table">
+              <thead>
+                <tr>
+                  <th>Funder Name</th>
+                  <th>Original Loan Amount</th>
+                  <th>Current Balance</th>
+                  <th>Regular Payment</th>
+                  <th>Payment Frequency</th>
+                  <th>Ending Date</th>
+                  <th class="dt-rm" aria-label="Remove row"></th>
+                </tr>
+              </thead>
+              <tbody id="debtRows"></tbody>
+            </table>
+          </div>
+          <button type="button" class="addbtn" id="addDebtRow">+ Add Row</button>
+          <p style="color:var(--muted);font-size:.86rem;margin-top:.8rem;">No active debt? You may continue to the next step.</p>
+        </div>
+
+        <!-- STEP 4 — Document Upload -->
+        <div class="fstep" data-step="4">
+          <h2>Document upload</h2>
+          <p class="step-sub">A copy of your completed funding application and a written list of your current debt obligations.</p>
+
+          <label class="fld"><span class="fld-label">Funding Application (completed)</span>
+            <div class="drop" data-drop="fundingApp"><div class="drop-t">Drop file or tap to browse</div>
+              <div class="drop-h">PDF only</div>
+              <input type="file" hidden accept="application/pdf,.pdf"></div>
+            <div class="flist" data-files="fundingApp"></div></label>
+
+          <label class="fld"><span class="fld-label">List of Current Debt Obligations</span>
+            <div class="drop" data-drop="debtList"><div class="drop-t">Drop file or tap to browse</div>
+              <div class="drop-h">PDF or image</div>
+              <input type="file" hidden accept=".pdf,image/*"></div>
+            <div class="flist" data-files="debtList"></div></label>
+
+          <p style="color:var(--muted);font-size:.86rem;margin:1rem 0 0;">No documents on hand? You can still continue — the firm will follow up about what to send.</p>
+        </div>
+
+        <!-- STEP 5 — Consent & Signature -->
+        <div class="fstep" data-step="5">
+          <h2>Consent and signature</h2>
+          <p class="step-sub">A quick summary of what you have entered, and the consent needed to begin a review.</p>
           <div id="reviewBox"></div>
           <label class="consent"><input type="checkbox" name="c1" required>
             <span>I understand that a restructuring review is a starting conversation and not a commitment.</span></label>
           <label class="consent"><input type="checkbox" name="c2" required>
-            <span>I authorize Archangel Funding to review the materials I have submitted for the purpose of this review.</span></label>
-          <span class="ferr" id="consentErr">Please check both boxes to continue.</span>
+            <span>I authorize Archangel Finance to review the materials I have submitted for the purpose of this review.</span></label>
+          <label class="consent"><input type="checkbox" name="c3" required>
+            <span>I certify that the information provided is accurate and complete to the best of my knowledge.</span></label>
+          <span class="ferr" id="consentErr">Please check all three boxes to continue.</span>
+
+          <label class="fld" style="margin-top:1.4rem"><span class="fld-label">Typed Full Name (Electronic Signature)</span>
+            <input type="text" name="sigName" required placeholder="Type your full legal name">
+            <span class="ferr">Please type your full legal name.</span></label>
+          <label class="fld"><span class="fld-label">Date</span>
+            <input type="text" name="sigDate" id="sigDate" readonly></label>
         </div>
 
         <div class="notice">
@@ -677,7 +841,7 @@ h3{font-size:1.42rem}
       <div class="done-card" id="doneCard" style="display:none">
         <div class="done-mark">&#10003;</div>
         <h2>Review request received</h2>
-        <p>Thank you. April will read your materials and reach out to walk through what she sees — typically within one to two business days.</p>
+        <p>Thank you. An attorney will read your materials and reach out to walk through what they see — typically within one to two business days.</p>
         <p style="margin-top:1.2rem"><a href="index.html" class="btn-ghostlink">Return to the homepage &rarr;</a></p>
       </div>
     </div>
@@ -690,7 +854,7 @@ h3{font-size:1.42rem}
       <a href="index.html" class="brand">
         <span class="brand-mark" aria-hidden="true">A</span>
         <span class="brand-text">
-          <span class="brand-name">Archangel Funding</span>
+          <span class="brand-name">Archangel Finance</span>
           <span class="brand-sub">Capital, with counsel</span>
         </span>
       </a>
@@ -704,20 +868,20 @@ h3{font-size:1.42rem}
     </div>
     <div class="footer-col">
       <h5>Firm</h5>
-      <a href="index.html#about">About April Stone</a>
+      <a href="index.html#about">About Us</a>
       <a href="index.html#process">The Process</a>
       <a href="index.html#faq">Common Questions</a>
     </div>
     <div class="footer-col">
       <h5>Contact</h5>
-      <a href="mailto:hello@archangelfunding.com">hello@archangelfunding.com</a>
+      <a href="mailto:hello@archangelfinance.com">hello@archangelfinance.com</a>
       <a href="tel:+18005550100">(800) 555-0100</a>
       <span>Mon-Fri, 9am to 6pm ET</span>
     </div>
   </div>
   <div class="wrap footer-base">
-    <span>(c) 2026 Archangel Funding. All rights reserved.</span>
-    <span class="disclaimer">Archangel Funding arranges merchant cash advances, which are purchases of future receivables and are not loans. Approval, amount, and terms depend on business revenue and qualifications. Legal review is provided as part of the funding process; specific legal advice depends on individual circumstances.</span>
+    <span>(c) 2026 Archangel Finance. All rights reserved.</span>
+    <span class="disclaimer">Archangel Finance arranges merchant cash advances, which are purchases of future receivables and are not loans. Approval, amount, and terms depend on business revenue and qualifications. Legal review is provided as part of the funding process; specific legal advice depends on individual circumstances.</span>
   </div>
 </footer>
 <script>
@@ -781,13 +945,13 @@ h3{font-size:1.42rem}
 <script>
 (function(){
   "use strict";
-  var TOTAL=3, current=1;
+  var TOTAL=5, current=1;
   var card=document.getElementById('formCard');
   var rail=document.getElementById('rail').querySelectorAll('.rail-item');
   var backBtn=document.getElementById('backBtn');
   var nextBtn=document.getElementById('nextBtn');
   var doneCard=document.getElementById('doneCard');
-  var CTA={1:'Continue',2:'Continue',3:'Send for Review'};
+  var CTA={1:'Continue',2:'Continue',3:'Continue',4:'Continue',5:'Send for Review'};
 
   function show(n){
     current=n;
@@ -798,7 +962,7 @@ h3{font-size:1.42rem}
     });
     backBtn.style.visibility=(n===1)?'hidden':'visible';
     nextBtn.textContent=CTA[n];
-    if(n===3)buildReview();
+    if(n===5)buildReview();
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function badField(f,on){
@@ -807,11 +971,13 @@ h3{font-size:1.42rem}
   }
   function validate(n){
     var step=card.querySelector('.fstep[data-step="'+n+'"]'), ok=true;
-    if(n===3){
+    if(n===5){
       var all=true;
       step.querySelectorAll('input[type=checkbox]').forEach(function(b){if(!b.checked)all=false;});
       document.getElementById('consentErr').classList.toggle('show',!all);
-      return all;
+      var nm=step.querySelector('input[name=sigName]');
+      if(!nm.value.trim()){badField(nm,true);ok=false;}else badField(nm,false);
+      return all && ok;
     }
     step.querySelectorAll('input[required],select[required]').forEach(function(f){
       if(f.offsetParent===null)return;
@@ -829,6 +995,25 @@ h3{font-size:1.42rem}
     show(current+1);
   });
   backBtn.addEventListener('click',function(){if(current>1)show(current-1);});
+
+  /* dynamic debt rows */
+  function addDebtRow(){
+    var tbody=document.getElementById('debtRows');
+    var tr=document.createElement('tr');
+    tr.innerHTML=
+      '<td><input type="text" placeholder="Funder name"></td>'+
+      '<td><input type="text" placeholder="$"></td>'+
+      '<td><input type="text" placeholder="$"></td>'+
+      '<td><input type="text" placeholder="$"></td>'+
+      '<td><select><option value="">Select</option><option>Daily</option><option>Weekly</option><option>Bi-weekly</option><option>Monthly</option></select></td>'+
+      '<td><input type="date"></td>'+
+      '<td class="dt-rm"><button type="button" class="dt-remove" aria-label="Remove row">&#10005;</button></td>';
+    tr.querySelector('.dt-remove').addEventListener('click',function(){tr.remove();});
+    tbody.appendChild(tr);
+  }
+  document.getElementById('addDebtRow').addEventListener('click',addDebtRow);
+  // Start with one empty row so the table is visible
+  addDebtRow();
 
   /* uploads */
   document.querySelectorAll('.drop').forEach(function(zone){
@@ -855,12 +1040,21 @@ h3{font-size:1.42rem}
   function val(n){var f=card.querySelector('[name="'+n+'"]');return f&&f.value.trim()?f.value.trim():'\u2014';}
   function row(k,v){return '<div class="rev-row"><span class="rk">'+k+'</span><span class="rv">'+esc(v)+'</span></div>';}
   function buildReview(){
-    var agree=document.querySelectorAll('.flist[data-files="agreements"] .fchip').length;
-    var bank=document.querySelectorAll('.flist[data-files="bank"] .fchip').length;
+    var docs=card.querySelectorAll('.fchip').length;
+    // Count filled debt rows (any field non-empty)
+    var debtCount=0;
+    document.querySelectorAll('#debtRows tr').forEach(function(tr){
+      var filled=false;
+      tr.querySelectorAll('input,select').forEach(function(f){ if(f.value && f.value.trim()) filled=true; });
+      if(filled) debtCount++;
+    });
+    // Owner count
+    var ownerCount=0;
+    for(var i=1;i<=4;i++){ if(val('own'+i+'Name')!=='\u2014') ownerCount++; }
     var h='';
-    h+='<div class="rev-card"><h4>Your Situation</h4>'+row('Business',val('businessName'))+row('Active Advances',val('advCount'))+row('Total Balance',val('totalBalance'))+row('Pressure Level',val('pressure'))+'</div>';
-    h+='<div class="rev-card"><h4>Documents</h4>'+row('Agreements',agree?String(agree)+' file(s)':'None yet')+row('Bank Statements',bank?String(bank)+' file(s)':'None yet')+'</div>';
-    h+='<div class="rev-card"><h4>Contact</h4>'+row('Name',val('ownerName'))+row('Phone',val('phone'))+row('Email',val('email'))+'</div>';
+    h+='<div class="rev-card"><h4>Business</h4>'+row('Company',val('businessName'))+row('Entity Type',val('entityType'))+row('Industry',val('industry'))+row('Annual Revenue',val('annualRevenue'))+row('Time in Business',val('timeInBusiness'))+row('EIN / Tax ID',val('ein'))+'</div>';
+    h+='<div class="rev-card"><h4>First Owner</h4>'+row('Name',val('own1Name'))+row('Ownership %',val('own1Pct'))+row('Email',val('own1Email'))+row('Phone',val('own1Phone'))+row('Total Owners Listed',String(ownerCount))+'</div>';
+    h+='<div class="rev-card"><h4>Position</h4>'+row('Debt Rows Listed',debtCount?String(debtCount):'None')+row('Documents Uploaded',docs?String(docs):'None yet')+'</div>';
     document.getElementById('reviewBox').innerHTML=h;
   }
 
@@ -873,6 +1067,12 @@ h3{font-size:1.42rem}
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function esc(s){return String(s).replace(/[&<>"\']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"\'":'&#39;'}[c];});}
+
+  /* init signature date */
+  var d=new Date();
+  var dateEl=document.getElementById('sigDate');
+  if(dateEl) dateEl.value=d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
   show(1);
 })();
 </script>
