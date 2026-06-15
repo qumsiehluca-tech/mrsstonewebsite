@@ -954,6 +954,56 @@ h3{font-size:1.42rem}
   } else {
     reveals.forEach(function(el){ el.classList.add('in'); });
   }
+
+  /* SCROLLSPY — light up the nav link whose section is currently in view.
+     Sections: #services (Funding), #process, #about, #faq.
+     "Home" is active when above all sections. "Debt Restructuring" is a
+     separate page, never highlighted on index. */
+  (function(){
+    var sectionIds = ['services','process','about','faq'];
+    var sections = sectionIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    if(!sections.length) return;
+    // Build a flat list of nav anchors (desktop + mobile) that target these hashes,
+    // plus the "Home" link (treated as the default-active when no section is in view).
+    var navAll = document.querySelectorAll('.nav-links a, .nav-mobile a');
+    function clearActive(){
+      navAll.forEach(function(a){ a.classList.remove('active'); });
+    }
+    function setActive(hashOrHome){
+      clearActive();
+      navAll.forEach(function(a){
+        var href = a.getAttribute('href') || '';
+        if(hashOrHome === 'home'){
+          // Match links whose href is exactly index.html, ./, /, or empty (not a hash-link)
+          if(/^(index\.html|\.\/|\/|)$/.test(href)) a.classList.add('active');
+        } else {
+          // Match links whose href ends with this hash (e.g. "index.html#services")
+          if(href.indexOf('#'+hashOrHome) !== -1) a.classList.add('active');
+        }
+      });
+    }
+    // Track which sections are currently considered "in view" — pick the topmost.
+    var visible = {};
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        visible[en.target.id] = en.isIntersecting;
+      });
+      // Find the first section in document order that is intersecting.
+      var current = null;
+      for(var i=0;i<sections.length;i++){
+        if(visible[sections[i].id]){ current = sections[i].id; break; }
+      }
+      setActive(current || 'home');
+    }, {
+      // Trigger when section is roughly mid-viewport: top of section has crossed
+      // 30% from the top, and bottom is still below 30% from top.
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0
+    });
+    sections.forEach(function(s){ spy.observe(s); });
+    // Initial state — set to "home" if at the very top.
+    setActive('home');
+  })();
 })();
 </script>
 <!-- ===== APPLY MODAL ===== -->

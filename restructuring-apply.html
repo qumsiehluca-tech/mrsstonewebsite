@@ -361,6 +361,106 @@ h3{font-size:1.42rem}
 .apply-shell{padding:8.5rem 0 5rem;background:var(--bg)}
 .apply-head{max-width:60ch;margin-bottom:2.4rem}
 .apply-head .kicker{margin-bottom:.9rem}
+
+/* ----- AUTOFILL BANNER ----- */
+.autofill-banner{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:1.1rem 1.4rem;margin-bottom:2.2rem;
+  background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--gold);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.autofill-banner .afb-icon{
+  width:42px;height:42px;flex-shrink:0;border:1px solid var(--gold);color:var(--gold);
+  border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+}
+.autofill-banner .afb-icon svg{width:20px;height:20px}
+.autofill-banner .afb-text{flex:1;min-width:0}
+.autofill-banner .afb-title{
+  font-family:var(--display);font-size:1.18rem;color:var(--ink);
+  line-height:1.25;margin-bottom:.18rem;
+}
+.autofill-banner .afb-sub{font-size:.86rem;color:var(--muted)}
+.autofill-banner .afb-btn{flex-shrink:0;padding:.75rem 1.4rem;font-size:.86rem}
+@media(max-width:680px){
+  .autofill-banner{flex-direction:column;align-items:flex-start;gap:.9rem;padding:1.2rem}
+  .autofill-banner .afb-btn{width:100%}
+}
+
+/* ----- AUTOFILL MODAL ----- */
+.afm-overlay{
+  position:fixed;inset:0;z-index:1000;background:rgba(12,11,10,.62);
+  backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;padding:1.2rem;
+  animation:afm-fade .18s ease;
+}
+.afm-overlay[hidden]{display:none}
+@keyframes afm-fade{from{opacity:0}to{opacity:1}}
+.afm-panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.5);
+  width:min(560px, 100%);max-height:90vh;overflow:auto;
+  padding:2rem 1.9rem 1.5rem;position:relative;
+  animation:afm-pop .22s ease;
+}
+@keyframes afm-pop{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+.afm-close{
+  position:absolute;top:.7rem;right:.85rem;
+  width:32px;height:32px;background:none;border:none;
+  color:var(--muted);cursor:pointer;font-size:1.5rem;line-height:1;
+  border-radius:var(--radius);
+}
+.afm-close:hover{color:var(--ink);background:var(--surface-2)}
+.afm-title{font-size:1.55rem;margin-bottom:.35rem}
+.afm-sub{color:var(--muted);font-size:.92rem;margin-bottom:1.3rem;line-height:1.55}
+.afm-actions{
+  display:flex;justify-content:flex-end;gap:.7rem;
+  margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line);
+}
+.afm-actions .btn{padding:.75rem 1.4rem;font-size:.86rem}
+.afm-note{
+  font-size:.74rem;color:var(--muted);margin-top:1rem;text-align:center;
+  letter-spacing:.02em;
+}
+.afm-busy{
+  display:flex;flex-direction:column;align-items:center;gap:1rem;
+  padding:2.4rem 1rem;
+}
+.afm-spinner{
+  width:38px;height:38px;border-radius:50%;
+  border:3px solid var(--line);border-top-color:var(--gold);
+  animation:afm-spin .8s linear infinite;
+}
+@keyframes afm-spin{to{transform:rotate(360deg)}}
+.afm-busy-text{font-size:.95rem;color:var(--text)}
+.afm-summary{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1rem 1.1rem;font-size:.88rem;
+}
+.afm-summary .afs-h{
+  font-family:var(--body);font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;
+}
+.afm-summary .afs-row{display:flex;justify-content:space-between;gap:1rem;padding:.25rem 0;border-bottom:1px solid var(--line)}
+.afm-summary .afs-row:last-child{border-bottom:none}
+.afm-summary .afs-k{color:var(--muted);font-size:.82rem}
+.afm-summary .afs-v{color:var(--ink);font-weight:600;font-size:.86rem;text-align:right;
+  max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.afm-summary .afs-empty{color:var(--muted);font-style:italic;text-align:center;padding:.4rem 0}
+.afm-missing{
+  margin-top:1rem;padding:1rem 1.1rem;
+  background:rgba(178,56,44,.06);border:1px solid rgba(178,56,44,.25);
+  border-radius:var(--radius);
+}
+.afm-missing-title{
+  font-size:.84rem;font-weight:600;color:#8a2d22;margin-bottom:.7rem;
+}
+[data-theme="dark"] .afm-missing-title{color:#e8826f}
+.afm-missing-fields{display:grid;gap:.7rem}
+.afm-missing-fields .fld{margin-bottom:0}
+.afm-missing-fields .fld input,
+.afm-missing-fields .fld select{font-size:.9rem;padding:.6rem .7rem}
+
 .apply-grid{display:grid;grid-template-columns:260px 1fr;gap:3rem;align-items:start}
 /* progress rail */
 .rail{position:sticky;top:108px;display:flex;flex-direction:column;gap:0}
@@ -611,6 +711,19 @@ h3{font-size:1.42rem}
       <p class="lede">A short intake. An attorney will read your existing agreements and balances, then come back with a legal opinion on where the business stands and what can be done. It is a starting conversation, not a commitment.</p>
     </div>
 
+    <!-- AUTOFILL BANNER -->
+    <div class="autofill-banner reveal" id="autofillBanner">
+      <div class="afb-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg>
+      </div>
+      <div class="afb-text">
+        <div class="afb-title">Already have a completed funding application?</div>
+        <div class="afb-sub">Upload the PDF and the form will fill itself in. You can review and edit before submitting.</div>
+      </div>
+      <button type="button" class="btn btn-dark afb-btn" id="openAutofill">Upload &amp; Auto-Fill</button>
+    </div>
+    <!-- /AUTOFILL BANNER -->
+
     <div class="apply-grid" id="applyGrid">
       <div class="rail" id="rail">
         <div class="rail-item active" data-r="1"><span class="rail-dot">1</span><span class="rail-label"><span class="rail-step">Step One</span>Business Info</span></div>
@@ -847,6 +960,51 @@ h3{font-size:1.42rem}
     </div>
   </div>
 </section>
+
+<!-- ===== AUTOFILL MODAL ===== -->
+<div class="afm-overlay" id="afmOverlay" role="dialog" aria-modal="true" aria-labelledby="afmTitle" hidden>
+  <div class="afm-panel" role="document">
+    <button type="button" class="afm-close" id="afmClose" aria-label="Close">&times;</button>
+    <h2 id="afmTitle" class="afm-title">Auto-fill from your PDF</h2>
+    <p class="afm-sub">Drop your completed funding application here. The form reads the PDF locally in your browser — nothing is uploaded.</p>
+
+    <div class="afm-stage" data-stage="upload">
+      <label class="fld" style="margin-bottom:0">
+        <div class="drop afm-drop" data-drop="afmFile"><div class="drop-t">Drop a PDF or tap to browse</div>
+          <div class="drop-h">PDF only</div>
+          <input type="file" hidden accept="application/pdf,.pdf" id="afmFileInput"></div>
+        <div class="flist" data-files="afmFile"></div>
+      </label>
+      <div class="afm-actions">
+        <button type="button" class="btn btn-outline" id="afmCancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="afmExtract" disabled>Extract &amp; Fill Form</button>
+      </div>
+    </div>
+
+    <div class="afm-stage" data-stage="busy" hidden>
+      <div class="afm-busy">
+        <div class="afm-spinner" aria-hidden="true"></div>
+        <div class="afm-busy-text" id="afmBusyText">Reading the PDF…</div>
+      </div>
+    </div>
+
+    <div class="afm-stage" data-stage="result" hidden>
+      <div class="afm-summary" id="afmSummary"></div>
+      <div class="afm-missing" id="afmMissing" hidden>
+        <div class="afm-missing-title">A few required fields could not be read from the PDF. Please fill these in:</div>
+        <div class="afm-missing-fields" id="afmMissingFields"></div>
+      </div>
+      <div class="afm-actions">
+        <button type="button" class="btn btn-outline" id="afmRetry">Upload Different PDF</button>
+        <button type="button" class="btn btn-primary" id="afmDone">Continue to Review Form</button>
+      </div>
+    </div>
+
+    <p class="afm-note">Reads locally in your browser. The data never leaves your device until you submit the form.</p>
+  </div>
+</div>
+<!-- ===== /AUTOFILL MODAL ===== -->
+
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="wrap footer-grid">
@@ -1074,6 +1232,539 @@ h3{font-size:1.42rem}
   if(dateEl) dateEl.value=d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
 
   show(1);
+})();
+</script>
+
+<!-- ===== AUTOFILL PDF EXTRACTOR =====
+     Same client-side PDF auto-fill flow as apply.html. Only the fields
+     that exist on this page (no fundingAmount / useOfFunds) will get
+     populated; the rest of the extracted data is harmlessly ignored. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  if(!window.pdfjsLib){ console.warn('PDF.js failed to load — auto-fill disabled.'); return; }
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  var overlay = document.getElementById('afmOverlay');
+  if(!overlay) return;
+  var openBtn = document.getElementById('openAutofill');
+  var closeBtn = document.getElementById('afmClose');
+  var cancelBtn = document.getElementById('afmCancel');
+  var extractBtn = document.getElementById('afmExtract');
+  var retryBtn = document.getElementById('afmRetry');
+  var doneBtn = document.getElementById('afmDone');
+  var fileInput = document.getElementById('afmFileInput');
+  var dropZone = overlay.querySelector('.afm-drop');
+  var fileList = overlay.querySelector('.flist[data-files="afmFile"]');
+  var summary = document.getElementById('afmSummary');
+  var missingBox = document.getElementById('afmMissing');
+  var missingFields = document.getElementById('afmMissingFields');
+  var busyText = document.getElementById('afmBusyText');
+  var pickedFile = null;
+
+  function showStage(name){
+    overlay.querySelectorAll('.afm-stage').forEach(function(s){ s.hidden = (s.dataset.stage !== name); });
+  }
+  function openModal(){
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    showStage('upload');
+    fileList.innerHTML = ''; pickedFile = null; extractBtn.disabled = true;
+  }
+  function closeModal(){ overlay.hidden = true; document.body.style.overflow = ''; }
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !overlay.hidden) closeModal(); });
+
+  function setFile(f){
+    if(!f) return;
+    if(!/\.pdf$/i.test(f.name) && f.type !== 'application/pdf'){ alert('Please choose a PDF file.'); return; }
+    pickedFile = f;
+    fileList.innerHTML = '';
+    var chip = document.createElement('div'); chip.className='fchip';
+    var kb = Math.max(1, Math.round(f.size/1024));
+    chip.innerHTML = '<span>'+escapeHTML(f.name)+' &middot; '+kb+' KB</span><button type="button" aria-label="Remove">&#10005;</button>';
+    chip.querySelector('button').addEventListener('click', function(){ pickedFile = null; fileList.innerHTML=''; extractBtn.disabled = true; });
+    fileList.appendChild(chip);
+    extractBtn.disabled = false;
+  }
+  dropZone.addEventListener('click', function(){ fileInput.click(); });
+  dropZone.addEventListener('dragover', function(e){ e.preventDefault(); dropZone.classList.add('over'); });
+  dropZone.addEventListener('dragleave', function(){ dropZone.classList.remove('over'); });
+  dropZone.addEventListener('drop', function(e){
+    e.preventDefault(); dropZone.classList.remove('over');
+    if(e.dataTransfer.files && e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', function(){ if(fileInput.files[0]) setFile(fileInput.files[0]); });
+
+  extractBtn.addEventListener('click', function(){
+    if(!pickedFile) return;
+    showStage('busy'); busyText.textContent = 'Reading the PDF…';
+    readPDF(pickedFile).then(function(text){
+      busyText.textContent = 'Extracting fields…';
+      var data = extractFields(text);
+      var applied = applyToForm(data);
+      var missing = findMissingRequired();
+      showStage('result');
+      renderSummary(applied);
+      renderMissing(missing);
+    }).catch(function(err){
+      console.error(err);
+      alert('Could not read that PDF. It may be scanned (image-only) or protected. Please fill the form manually, or try a different file.');
+      showStage('upload');
+    });
+  });
+  retryBtn.addEventListener('click', function(){
+    showStage('upload'); fileList.innerHTML = ''; pickedFile = null; extractBtn.disabled = true;
+  });
+  doneBtn.addEventListener('click', function(){
+    var allFilled = true;
+    missingFields.querySelectorAll('[data-target]').forEach(function(input){
+      var target = document.querySelector('[name="'+input.dataset.target+'"]');
+      if(target){
+        target.value = input.value;
+        if(target.required && !input.value.trim()){ allFilled = false; input.classList.add('bad'); }
+        else { input.classList.remove('bad'); }
+      }
+    });
+    if(!allFilled) return;
+    closeModal();
+    document.querySelectorAll('#formCard input, #formCard select').forEach(function(f){
+      if(f.value) f.dispatchEvent(new Event('input', {bubbles:true}));
+    });
+    window.scrollTo({top: document.querySelector('.apply-shell').offsetTop, behavior:'smooth'});
+  });
+
+  /* ---------- PDF.js: read both text labels (with positions) and
+                AcroForm field values (also with positions), then match. */
+  function readPDF(file){
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = function(){
+        var bytes = new Uint8Array(reader.result);
+        window.pdfjsLib.getDocument({data: bytes}).promise.then(function(pdf){
+          var pageJobs = [];
+          for(var i=1; i<=pdf.numPages; i++){
+            pageJobs.push((function(pageNum){
+              return pdf.getPage(pageNum).then(function(page){
+                var viewport = page.getViewport({scale:1});
+                return Promise.all([
+                  page.getTextContent(),
+                  page.getAnnotations()
+                ]).then(function(arr){
+                  var tc = arr[0], annots = arr[1];
+                  var labels = tc.items.map(function(it){
+                    // PDF text item transform: [a,b,c,d, x, y]
+                    return { text: it.str, x: it.transform[4], y: it.transform[5], pageNum: pageNum, pageHeight: viewport.height };
+                  }).filter(function(l){ return l.text && l.text.trim(); });
+                  var fields = annots.filter(function(a){
+                    if(a.subtype !== 'Widget') return false;
+                    // Skip signature widgets and pushbuttons — only text/choice fields carry user data.
+                    var ft = a.fieldType;
+                    if(ft === 'Sig' || ft === 'Btn') return false;
+                    if(typeof a.fieldValue === 'undefined' || a.fieldValue === null) return false;
+                    var v = a.fieldValue;
+                    // PDF.js may surface object/array values for some widget types — only keep simple strings.
+                    if(typeof v === 'object') return false;
+                    var s = String(v).trim();
+                    return s.length > 0;
+                  }).map(function(a){
+                    return { name: a.fieldName, value: String(a.fieldValue), rect: a.rect, pageNum: pageNum };
+                  });
+                  return { labels: labels, fields: fields, pageNum: pageNum, pageHeight: viewport.height };
+                });
+              });
+            })(i));
+          }
+          Promise.all(pageJobs).then(function(pageData){
+            var flatText = pageData.map(function(p){
+              return p.labels.map(function(l){ return l.text; }).join(' ');
+            }).join('\n');
+            resolve({ pages: pageData, text: flatText });
+          }, reject);
+        }, reject);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  /* ---------- Label vocabulary. */
+  var BIZ_LABEL_MAP = [
+    {re:/Desired\s+funding\s+amount/i,  key:'fundingAmount'},
+    {re:/Use\s+of\s+funds/i,            key:'useOfFunds'},
+    {re:/Company\s+name|Business\s+name/i, key:'businessName'},
+    {re:/Entity\s+Type/i,               key:'entityType'},
+    {re:/Industry/i,                    key:'industry'},
+    {re:/Tax\s*id|EIN/i,                key:'ein'},
+    {re:/Annual\s+revenue/i,            key:'annualRevenue'},
+    {re:/Time\s+in\s+business/i,        key:'timeInBusiness'},
+    {re:/Business\s+phone/i,            key:'bizPhone'},
+    {re:/Business\s+address/i,          key:'bizAddress'}
+  ];
+  var OWNER_LABEL_MAP = [
+    {re:/Ownership\s*%/i, suffix:'Pct'},
+    {re:/^Name$/i,         suffix:'Name'},
+    {re:/Date\s+of\s+Birth/i, suffix:'Dob'},
+    {re:/^SSN$/i,          suffix:'Ssn'},
+    {re:/^Phone$/i,        suffix:'Phone'},
+    {re:/Home\s+Address/i, suffix:'Address'},
+    {re:/^Email$/i,        suffix:'Email'}
+  ];
+
+  function cleanVal(s){
+    if(!s) return '';
+    return s.replace(/\s+/g,' ').replace(/^[\s:•·]+|[\s:•·]+$/g,'').trim();
+  }
+
+  function matchLabel(labelText, isOwnerSection){
+    var t = (labelText || '').trim();
+    if(!t) return null;
+    if(isOwnerSection){
+      for(var i=0;i<OWNER_LABEL_MAP.length;i++){
+        if(OWNER_LABEL_MAP[i].re.test(t)) return {kind:'owner', suffix:OWNER_LABEL_MAP[i].suffix};
+      }
+    }
+    for(var j=0;j<BIZ_LABEL_MAP.length;j++){
+      if(BIZ_LABEL_MAP[j].re.test(t)) return {kind:'biz', key:BIZ_LABEL_MAP[j].key};
+    }
+    return null;
+  }
+
+  /* Find the closest label that lies just LEFT or just ABOVE a given form
+     field, using PDF coordinates (y grows upward from the bottom). */
+  function nearestLabelFor(field, labels){
+    var fx1 = field.rect[0], fy1 = field.rect[1], fy2 = field.rect[3];
+    var fyMid = (fy1 + fy2) / 2;
+    var candidates = labels.filter(function(L){ return L.pageNum === field.pageNum; });
+    var best = null, bestScore = Infinity;
+    candidates.forEach(function(L){
+      var dy = L.y - fyMid;            // positive = label above field center
+      var dx = fx1 - L.x;              // positive = label is to the left
+      var sameRow  = Math.abs(dy) < 14 && dx > -10 && dx < 240;
+      var justAbove = dy > 0 && dy < 26 && Math.abs(L.x - fx1) < 200;
+      if(!sameRow && !justAbove) return;
+      var score = Math.abs(dy) + Math.abs(dx) * 0.4;
+      if(score < bestScore){ bestScore = score; best = L; }
+    });
+    if(best) return best.text;
+    // RELAXED FALLBACK — broaden the search if the strict windows missed.
+    // Look for labels on the same row OR above with a wider tolerance.
+    candidates.forEach(function(L){
+      var dy = L.y - fyMid;
+      var dx = fx1 - L.x;
+      var sameRowLoose  = Math.abs(dy) < 20 && dx > -50 && dx < 450;
+      var justAboveLoose = dy > 0 && dy < 40 && Math.abs(L.x - fx1) < 300;
+      if(!sameRowLoose && !justAboveLoose) return;
+      var score = Math.abs(dy) + Math.abs(dx) * 0.4;
+      if(score < bestScore){ bestScore = score; best = L; }
+    });
+    return best ? best.text : '';
+  }
+
+  /* Decide which owner column a field is in. Uses the "First/Second/Third/
+     Fourth owner information" markers on the page when present; otherwise
+     falls back to page-half heuristic (page 1 → owners 1/2, page 2 → 3/4). */
+  function ownerIndexFor(field, labels){
+    var fx = (field.rect[0] + field.rect[2]) / 2;
+    var pageNum = field.pageNum;
+    var ownerMarkers = labels.filter(function(L){
+      return L.pageNum === pageNum && /^(First|Second|Third|Fourth)\s+owner\s+information/i.test(L.text);
+    });
+    if(ownerMarkers.length >= 2){
+      ownerMarkers.sort(function(a,b){ return a.x - b.x; });
+      var closer = ownerMarkers[0];
+      var minDx = Math.abs(fx - closer.x);
+      for(var i=1;i<ownerMarkers.length;i++){
+        var d = Math.abs(fx - ownerMarkers[i].x);
+        if(d < minDx){ minDx = d; closer = ownerMarkers[i]; }
+      }
+      var m = closer.text.match(/^(First|Second|Third|Fourth)/i);
+      var idxMap = {first:1, second:2, third:3, fourth:4};
+      if(m) return idxMap[m[1].toLowerCase()] || 1;
+    }
+    var pageWidth = 612;
+    var isLeftHalf = fx < (pageWidth/2);
+    if(pageNum === 1) return isLeftHalf ? 1 : 2;
+    return isLeftHalf ? 3 : 4;
+  }
+
+  /* Field is in owner section if an "owner information" marker sits above it. */
+  function fieldIsInOwnerSection(field, labels){
+    var fyTop = field.rect[3];
+    return labels.some(function(L){
+      return L.pageNum === field.pageNum && /owner\s+information/i.test(L.text) && L.y > fyTop - 6;
+    });
+  }
+
+  /* Classifier fallback: assign unmapped values by content pattern. */
+  function classifyLeftovers(values, out){
+    values.forEach(function(f){
+      var v = cleanVal(f.value);
+      if(!v) return;
+      if(!out.ein && /^[0-9]{2}-?[0-9]{7}$/.test(v)){
+        var d = v.replace(/\D/g,''); out.ein = d.slice(0,2)+'-'+d.slice(2); return;
+      }
+      if(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v)){
+        if(!out.own1Email) out.own1Email = v;
+        else if(!out.own2Email) out.own2Email = v;
+        return;
+      }
+      if(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test(v)){
+        if(!out.own1Dob) out.own1Dob = v;
+        else if(!out.own2Dob) out.own2Dob = v;
+        return;
+      }
+      if(/^[0-9]{9}$/.test(v) || /^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$/.test(v)){
+        var d2 = v.replace(/\D/g,'');
+        if(d2.length === 9){
+          var ssn = d2.slice(0,3)+'-'+d2.slice(3,5)+'-'+d2.slice(5);
+          if(!out.own1Ssn) out.own1Ssn = ssn;
+          else if(!out.own2Ssn) out.own2Ssn = ssn;
+        }
+        return;
+      }
+      if(/^[\(\)\d\s.\-]{7,20}$/.test(v) && v.replace(/\D/g,'').length >= 10){
+        if(!out.bizPhone) out.bizPhone = v;
+        else if(!out.own1Phone) out.own1Phone = v;
+        else if(!out.own2Phone) out.own2Phone = v;
+        return;
+      }
+      // Use of funds — common multi-word business terms. Runs BEFORE the
+      // person-name fallback so 'Working Capital' isn't mistaken for a name.
+      if(!out.useOfFunds && /^(Working\s+Capital|Equipment(?:\s+Purchase)?|Inventory|Marketing|Payroll|Expansion|Renovation|Real\s+Estate|Debt\s+Consolidation|Refinanc(?:e|ing)|Hiring|Acquisition|Cash\s+Flow)$/i.test(v)){
+        out.useOfFunds = v;
+        return;
+      }
+      if(/^[A-Z][a-z']+\s+[A-Z][a-z'\-]+$/.test(v)){
+        if(!out.own1Name) out.own1Name = v;
+        else if(!out.own2Name) out.own2Name = v;
+        return;
+      }
+      if(/\b\d{5}\b/.test(v) && /,/.test(v)){
+        if(!out.bizAddress) out.bizAddress = v;
+        else if(!out.own1Address) out.own1Address = v;
+        return;
+      }
+      if(/^(LLC|S-?Corp(?:oration)?|C-?Corp(?:oration)?|Partnership|Sole\s+Prop(?:rietorship)?)$/i.test(v)){
+        if(!out.entityType) out.entityType = v;
+        return;
+      }
+      // Company-like names — contain LLC / Inc / Corp / LP / Co. suffix
+      if(!out.businessName && /\b(LLC|Inc\.?|Corp(?:oration)?|Co\.|Company|LP|LLP|Ltd\.?)\b/i.test(v) && v.length > 4 && v.length < 120){
+        out.businessName = v;
+        return;
+      }
+      // Small standalone integer (0–100) — likely ownership percent.
+      if(!out.own1Pct && /^[0-9]{1,3}$/.test(v) && parseInt(v,10) <= 100){
+        out.own1Pct = v;
+        return;
+      }
+    });
+  }
+
+  /* ---------- Main extraction.
+     Strategy: prefer interactive AcroForm values (matched by position to
+     nearby labels). Fall back to flat-text regex for fields still missing. */
+  function extractFields(parsed){
+    var out = {};
+    var allFields = [].concat.apply([], parsed.pages.map(function(p){ return p.fields; }));
+    var allLabels = [].concat.apply([], parsed.pages.map(function(p){ return p.labels; }));
+
+    if(allFields.length){
+      allFields.forEach(function(f){
+        var isOwner = fieldIsInOwnerSection(f, allLabels);
+        var labelText = nearestLabelFor(f, allLabels);
+        if(!labelText) return;
+        var hit = matchLabel(labelText, isOwner);
+        if(!hit) return;
+        if(hit.kind === 'biz'){
+          out[hit.key] = cleanVal(f.value);
+        } else if(hit.kind === 'owner'){
+          var idx = ownerIndexFor(f, allLabels);
+          out['own'+idx+hit.suffix] = cleanVal(f.value);
+        }
+      });
+      // Run the content-based classifier over any leftover unassigned values.
+      var seen = {};
+      Object.keys(out).forEach(function(k){ seen[out[k]] = true; });
+      var leftovers = allFields.filter(function(f){ return !seen[cleanVal(f.value)]; });
+      classifyLeftovers(leftovers, out);
+    }
+
+    // Flat-text fallback for missing keys (handles flattened/printed PDFs).
+    var t = parsed.text || '';
+    BIZ_LABEL_MAP.forEach(function(L){
+      if(out[L.key]) return;
+      var others = BIZ_LABEL_MAP.filter(function(x){ return x !== L; }).map(function(x){ return x.re.source; }).join('|');
+      try {
+        var pat = new RegExp(L.re.source + '\\s*[:]*\\s*([^\\n]+?)(?=\\s+(?:'+ others +')|\\s+First\\s+owner|\\s+Current\\s+balances|\\s+By\\s+signing|$)', 'i');
+        var m = t.match(pat);
+        if(m && m[1]) out[L.key] = cleanVal(m[1]);
+      } catch(e){ /* skip on regex assembly errors */ }
+    });
+
+    return out;
+  }
+
+  function applyToForm(data){
+    var applied = {};
+    var fieldLabels = {
+      businessName:'Company Name', entityType:'Entity Type', industry:'Industry',
+      ein:'Tax ID / EIN', annualRevenue:'Annual Revenue', timeInBusiness:'Time in Business',
+      bizPhone:'Business Phone', bizAddress:'Business Address'
+    };
+    Object.keys(data).forEach(function(key){
+      var val = data[key];
+      var input = document.querySelector('[name="'+key+'"]');
+      if(!input) return; // field not present on this page — harmlessly skip
+      if(input.tagName === 'SELECT'){
+        var matched = matchSelect(input, val, key);
+        if(matched){ input.value = matched; applied[fieldLabels[key] || key] = matched; }
+        else { applied[fieldLabels[key] || key] = val + ' (please confirm)'; }
+      } else {
+        var v = val;
+        if(key === 'ein'){ v = v.replace(/\D/g,''); if(v.length===9) v = v.slice(0,2)+'-'+v.slice(2); }
+        if(/Ssn$/.test(key)){
+          var digits = v.replace(/\D/g,'');
+          if(digits.length===9) v = digits.slice(0,3)+'-'+digits.slice(3,5)+'-'+digits.slice(5);
+        }
+        if(/Phone$/.test(key) || key === 'bizPhone'){
+          var d = v.replace(/\D/g,'');
+          if(d.length===10) v = '('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6);
+        }
+        if(/Dob$/.test(key)){
+          var mm = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+          if(mm) v = mm[3]+'-'+mm[1]+'-'+mm[2];
+        }
+        input.value = v;
+        var lbl = key.charAt(0).toUpperCase()+key.slice(1).replace(/([A-Z])/g,' $1');
+        applied[fieldLabels[key] || lbl.trim()] = v;
+      }
+    });
+    return applied;
+  }
+
+  function matchSelect(select, raw, key){
+    var opts = Array.from(select.options).map(function(o){ return o.value; }).filter(Boolean);
+    var v = (raw || '').toLowerCase().trim();
+    for(var i=0;i<opts.length;i++){ if(opts[i].toLowerCase() === v) return opts[i]; }
+    for(var j=0;j<opts.length;j++){
+      var ol = opts[j].toLowerCase();
+      if(ol.indexOf(v) !== -1 || v.indexOf(ol) !== -1) return opts[j];
+    }
+    if(key === 'annualRevenue'){
+      var n = parseRevenue(raw);
+      if(n != null){
+        if(n < 150000) return findOpt(opts, 'Under $150,000');
+        if(n < 500000) return findOpt(opts, '$150,000 to $500,000');
+        if(n < 1000000) return findOpt(opts, '$500,000 to $1M');
+        if(n < 3000000) return findOpt(opts, '$1M to $3M');
+        if(n < 10000000) return findOpt(opts, '$3M to $10M');
+        return findOpt(opts, '$10M or more');
+      }
+    }
+    if(key === 'timeInBusiness'){
+      var years = parseFloat(raw);
+      if(!isNaN(years)){
+        if(/month/i.test(raw)){
+          if(years < 6) return findOpt(opts, 'Less than 6 months');
+          if(years < 12) return findOpt(opts, '6 to 12 months');
+          return findOpt(opts, '1 to 2 years');
+        }
+        if(years < 0.5) return findOpt(opts, 'Less than 6 months');
+        if(years < 1) return findOpt(opts, '6 to 12 months');
+        if(years < 2) return findOpt(opts, '1 to 2 years');
+        if(years < 5) return findOpt(opts, '2 to 5 years');
+        return findOpt(opts, '5 or more years');
+      }
+    }
+    if(key === 'industry'){
+      var keyword = raw.toLowerCase();
+      var map = [
+        {test:/construct|trade/, label:'Construction and Trades'},
+        {test:/truck|transport|logistics/, label:'Trucking and Transportation'},
+        {test:/restaurant|food|cafe/, label:'Restaurant and Food Service'},
+        {test:/retail|store/, label:'Retail'},
+        {test:/health|medical|clinic|pharma|hospital/, label:'Healthcare'},
+        {test:/auto|repair|mechanic/, label:'Auto Repair'},
+        {test:/profession|legal|consult|account/, label:'Professional Services'},
+        {test:/e-?commerce|online|shop/, label:'E-commerce'}
+      ];
+      for(var x=0;x<map.length;x++){
+        if(map[x].test.test(keyword)){
+          var hit = findOpt(opts, map[x].label);
+          if(hit) return hit;
+        }
+      }
+      return findOpt(opts, 'Other');
+    }
+    return null;
+  }
+  function findOpt(opts, label){ for(var i=0;i<opts.length;i++){ if(opts[i]===label) return opts[i]; } return null; }
+  function parseRevenue(s){
+    if(!s) return null;
+    var t = String(s).toLowerCase().replace(/[\$,\s]/g,'');
+    var mult = 1;
+    if(/m\b|million/.test(t)) mult = 1e6;
+    else if(/k\b|thousand/.test(t)) mult = 1e3;
+    else if(/b\b|billion/.test(t)) mult = 1e9;
+    var num = parseFloat(t);
+    if(isNaN(num)) return null;
+    return num * mult;
+  }
+
+  function findMissingRequired(){
+    var missing = [];
+    document.querySelectorAll('#formCard [required]').forEach(function(f){
+      if(f.type === 'checkbox') return;
+      if(f.name === 'sigName') return;
+      if(!f.value || !String(f.value).trim()) missing.push(f);
+    });
+    return missing;
+  }
+
+  function renderSummary(applied){
+    var keys = Object.keys(applied);
+    if(!keys.length){
+      summary.innerHTML = '<div class="afs-h">Auto-fill results</div>'+
+        '<div class="afs-empty">No matching fields could be read. Please fill the form manually.</div>';
+      return;
+    }
+    var h = '<div class="afs-h">'+keys.length+' field'+(keys.length===1?'':'s')+' filled from your PDF</div>';
+    keys.forEach(function(k){
+      h += '<div class="afs-row"><span class="afs-k">'+escapeHTML(k)+'</span><span class="afs-v" title="'+escapeAttr(applied[k])+'">'+escapeHTML(applied[k])+'</span></div>';
+    });
+    summary.innerHTML = h;
+  }
+  function renderMissing(missing){
+    if(!missing.length){ missingBox.hidden = true; missingFields.innerHTML=''; return; }
+    missingBox.hidden = false;
+    var h = '';
+    missing.forEach(function(f){
+      var labelEl = f.closest('.fld') ? f.closest('.fld').querySelector('.fld-label') : null;
+      var labelText = labelEl ? labelEl.textContent.replace(/\(optional\)/i,'').trim() : (f.name||'Field');
+      var inputHTML;
+      if(f.tagName === 'SELECT'){
+        var opts = Array.from(f.options).map(function(o){
+          return '<option value="'+escapeAttr(o.value)+'">'+escapeHTML(o.text)+'</option>';
+        }).join('');
+        inputHTML = '<select data-target="'+escapeAttr(f.name)+'">'+opts+'</select>';
+      } else {
+        inputHTML = '<input type="'+(f.type||'text')+'" data-target="'+escapeAttr(f.name)+'" placeholder="'+escapeAttr(f.placeholder||'')+'">';
+      }
+      h += '<label class="fld"><span class="fld-label">'+escapeHTML(labelText)+'</span>'+inputHTML+'</label>';
+    });
+    missingFields.innerHTML = h;
+  }
+
+  function escapeHTML(s){ return String(s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function escapeAttr(s){ return escapeHTML(s); }
 })();
 </script>
 
