@@ -447,6 +447,13 @@ h3{font-size:1.42rem}
 .afm-summary .afs-v{color:var(--ink);font-weight:600;font-size:.86rem;text-align:right;
   max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .afm-summary .afs-empty{color:var(--muted);font-style:italic;text-align:center;padding:.4rem 0}
+.afm-summary .afs-diag{margin-top:.8rem;padding:.7rem .8rem;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);font-size:.78rem}
+.afm-summary .afs-diag-h{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.afm-summary .afs-diag-row{display:flex;justify-content:space-between;gap:.7rem;padding:.18rem 0;color:var(--text)}
+.afm-summary .afs-diag-row span:first-child{color:var(--muted);flex-shrink:0}
+.afm-summary .afs-diag-row span:last-child{color:var(--ink);text-align:right;word-break:break-word}
+.afm-summary .afs-diag-row.afs-diag-text{flex-direction:column;gap:.2rem}
+.afm-summary .afs-diag-row.afs-diag-text span:last-child{text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.74rem;line-height:1.4;color:var(--text);background:var(--surface);padding:.4rem .55rem;border-radius:var(--radius);border:1px solid var(--line);max-height:8rem;overflow:auto}
 .afm-missing{
   margin-top:1rem;padding:1rem 1.1rem;
   background:rgba(178,56,44,.06);border:1px solid rgba(178,56,44,.25);
@@ -969,12 +976,12 @@ h3{font-size:1.42rem}
     <p class="afm-sub">Drop your completed funding application here. The form reads the PDF locally in your browser — nothing is uploaded.</p>
 
     <div class="afm-stage" data-stage="upload">
-      <label class="fld" style="margin-bottom:0">
+      <div class="fld" style="margin-bottom:0">
         <div class="drop afm-drop" data-drop="afmFile"><div class="drop-t">Drop a PDF or tap to browse</div>
           <div class="drop-h">PDF only</div>
           <input type="file" hidden accept="application/pdf,.pdf" id="afmFileInput"></div>
         <div class="flist" data-files="afmFile"></div>
-      </label>
+      </div>
       <div class="afm-actions">
         <button type="button" class="btn btn-outline" id="afmCancel">Cancel</button>
         <button type="button" class="btn btn-primary" id="afmExtract" disabled>Extract &amp; Fill Form</button>
@@ -1272,6 +1279,7 @@ h3{font-size:1.42rem}
     document.body.style.overflow = 'hidden';
     showStage('upload');
     fileList.innerHTML = ''; pickedFile = null; extractBtn.disabled = true;
+    fileInput.value = ''; // allow re-picking the same file across opens
   }
   function closeModal(){ overlay.hidden = true; document.body.style.overflow = ''; }
   openBtn.addEventListener('click', openModal);
@@ -1288,11 +1296,20 @@ h3{font-size:1.42rem}
     var chip = document.createElement('div'); chip.className='fchip';
     var kb = Math.max(1, Math.round(f.size/1024));
     chip.innerHTML = '<span>'+escapeHTML(f.name)+' &middot; '+kb+' KB</span><button type="button" aria-label="Remove">&#10005;</button>';
-    chip.querySelector('button').addEventListener('click', function(){ pickedFile = null; fileList.innerHTML=''; extractBtn.disabled = true; });
+    chip.querySelector('button').addEventListener('click', function(e){
+      e.stopPropagation();
+      pickedFile = null; fileList.innerHTML = ''; extractBtn.disabled = true;
+      fileInput.value = '';
+    });
     fileList.appendChild(chip);
     extractBtn.disabled = false;
   }
-  dropZone.addEventListener('click', function(){ fileInput.click(); });
+  dropZone.addEventListener('click', function(e){
+    // Stop the click from bubbling — the wrapping div used to be a <label>
+    // which would fire a second .click() on the input and cancel the first.
+    e.preventDefault(); e.stopPropagation();
+    fileInput.click();
+  });
   dropZone.addEventListener('dragover', function(e){ e.preventDefault(); dropZone.classList.add('over'); });
   dropZone.addEventListener('dragleave', function(){ dropZone.classList.remove('over'); });
   dropZone.addEventListener('drop', function(e){
@@ -1304,22 +1321,32 @@ h3{font-size:1.42rem}
   extractBtn.addEventListener('click', function(){
     if(!pickedFile) return;
     showStage('busy'); busyText.textContent = 'Reading the PDF…';
-    readPDF(pickedFile).then(function(text){
+    readPDF(pickedFile).then(function(parsed){
       busyText.textContent = 'Extracting fields…';
-      var data = extractFields(text);
+      var totalWidgets = parsed.pages.reduce(function(s,p){ return s + p.fields.length; }, 0);
+      var totalLabels  = parsed.pages.reduce(function(s,p){ return s + p.labels.length; }, 0);
+      console.log('[Auto-fill] Pages:', parsed.pages.length, '| Widgets:', totalWidgets, '| Text items:', totalLabels);
+      if(totalWidgets > 0){
+        console.log('[Auto-fill] Widget values found:');
+        parsed.pages.forEach(function(p){
+          p.fields.forEach(function(f){ console.log('   ', f.name || '(no name)', '=', JSON.stringify(f.value).slice(0,80)); });
+        });
+      }
+      var data = extractFields(parsed);
+      console.log('[Auto-fill] Extracted fields:', data);
       var applied = applyToForm(data);
       var missing = findMissingRequired();
       showStage('result');
-      renderSummary(applied);
+      renderSummary(applied, parsed);
       renderMissing(missing);
     }).catch(function(err){
-      console.error(err);
-      alert('Could not read that PDF. It may be scanned (image-only) or protected. Please fill the form manually, or try a different file.');
+      console.error('[Auto-fill] readPDF failed:', err);
+      alert('Could not read that PDF. It may be scanned (image-only) or password-protected. Please fill the form manually, or try a different file.');
       showStage('upload');
     });
   });
   retryBtn.addEventListener('click', function(){
-    showStage('upload'); fileList.innerHTML = ''; pickedFile = null; extractBtn.disabled = true;
+    showStage('upload'); fileList.innerHTML = ''; pickedFile = null; extractBtn.disabled = true; fileInput.value = '';
   });
   doneBtn.addEventListener('click', function(){
     var allFilled = true;
@@ -1608,6 +1635,62 @@ h3{font-size:1.42rem}
       } catch(e){ /* skip on regex assembly errors */ }
     });
 
+    // Flat-text OWNER fallback. Split text by "First/Second/Third/Fourth
+    // owner information" markers and pull each owner's sub-fields from the
+    // block. Runs only if widget-based extraction didn't already get them.
+    var blockTags = ['First owner','Second owner','Third owner','Fourth owner'];
+    for(var bi=0; bi<blockTags.length; bi++){
+      // Skip this owner if we already have their Name (good signal it was populated).
+      if(out['own'+(bi+1)+'Name']) continue;
+      var startRe = new RegExp(blockTags[bi]+'\\s+information','i');
+      var sm = t.match(startRe);
+      if(!sm) continue;
+      var startIdx = sm.index + sm[0].length;
+      var endIdx = t.length;
+      for(var bj=bi+1; bj<blockTags.length; bj++){
+        var nextRe = new RegExp(blockTags[bj]+'\\s+information','i');
+        var nm = t.slice(startIdx).match(nextRe);
+        if(nm){ endIdx = startIdx + nm.index; break; }
+      }
+      var trailRe = /(Current\s+balances|By\s+signing|Funder\s+name)/i;
+      var tm = t.slice(startIdx, endIdx).match(trailRe);
+      if(tm) endIdx = startIdx + tm.index;
+      var block = t.slice(startIdx, endIdx);
+      // Per-owner regex set.
+      var ownerPats = [
+        {key:'Pct',     pat:/Ownership\s*%[\s:]*([0-9]{1,3})/i},
+        {key:'Name',    pat:/(?:^|\s)Name[\s:]*([A-Z][A-Za-z'\- .]{1,60}?)(?=\s+Date\s+of\s+Birth|\s+SSN|\s+Phone|\s+Home|\s+Email|$)/i},
+        {key:'Dob',     pat:/Date\s+of\s+Birth[\s:]*([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4})/i},
+        {key:'Ssn',     pat:/SSN[\s:]*([0-9]{3}-?[0-9]{2}-?[0-9]{4})/i},
+        {key:'Phone',   pat:/(?:^|\s)Phone[\s:]*([\(\)\d\s.\-]{7,20})/i},
+        {key:'Address', pat:/Home\s+Address[\s:]*([^\n]+?)(?=\s+Email|$)/i},
+        {key:'Email',   pat:/Email[\s:]*([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/i}
+      ];
+      ownerPats.forEach(function(L){
+        if(out['own'+(bi+1)+L.key]) return;
+        var m = block.match(L.pat);
+        if(m && m[1]) out['own'+(bi+1)+L.key] = cleanVal(m[1]);
+      });
+    }
+    // Last-resort: if there were no owner-block markers at all but the
+    // text contains a single owner's worth of fields, treat it as owner 1.
+    if(!out.own1Name){
+      var sig = /Date\s+of\s+Birth/i.test(t) && /SSN/i.test(t);
+      if(sig){
+        var lastResort = [
+          {key:'own1Pct',     pat:/Ownership\s*%[\s:]*([0-9]{1,3})/i},
+          {key:'own1Dob',     pat:/Date\s+of\s+Birth[\s:]*([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4})/i},
+          {key:'own1Ssn',     pat:/SSN[\s:]*([0-9]{3}-?[0-9]{2}-?[0-9]{4})/i},
+          {key:'own1Email',   pat:/([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/}
+        ];
+        lastResort.forEach(function(L){
+          if(out[L.key]) return;
+          var m = t.match(L.pat);
+          if(m && m[1]) out[L.key] = cleanVal(m[1]);
+        });
+      }
+    }
+
     return out;
   }
 
@@ -1728,11 +1811,34 @@ h3{font-size:1.42rem}
     return missing;
   }
 
-  function renderSummary(applied){
+  function renderSummary(applied, parsed){
     var keys = Object.keys(applied);
     if(!keys.length){
-      summary.innerHTML = '<div class="afs-h">Auto-fill results</div>'+
-        '<div class="afs-empty">No matching fields could be read. Please fill the form manually.</div>';
+      // Diagnostic panel — show what we DID find in the PDF.
+      var pageCount = (parsed && parsed.pages) ? parsed.pages.length : 0;
+      var widgetCount = (parsed && parsed.pages) ? parsed.pages.reduce(function(s,p){ return s + p.fields.length; }, 0) : 0;
+      var textPreview = (parsed && parsed.text)
+        ? parsed.text.replace(/\s+/g, ' ').trim().slice(0, 280)
+        : '';
+      var reason;
+      if(pageCount === 0){
+        reason = 'The PDF could not be read at all. It may be password-protected.';
+      } else if(widgetCount === 0 && !textPreview){
+        reason = 'No text or form fields were found. This is usually a scanned (image-only) PDF — OCR isn\'t available client-side.';
+      } else if(widgetCount === 0){
+        reason = 'No interactive form fields detected. This looks like a flattened or printed PDF. The auto-fill works best with editable PDFs.';
+      } else {
+        reason = 'Form fields were detected but their labels did not match any known field. The application template may be different from what auto-fill expects.';
+      }
+      var h = '<div class="afs-h">Auto-fill could not match any fields</div>'+
+              '<div class="afs-empty">'+escapeHTML(reason)+'</div>'+
+              '<div class="afs-diag"><div class="afs-diag-h">Diagnostic</div>'+
+                '<div class="afs-diag-row"><span>Pages</span><span>'+pageCount+'</span></div>'+
+                '<div class="afs-diag-row"><span>Form fields</span><span>'+widgetCount+'</span></div>'+
+                (textPreview ? '<div class="afs-diag-row afs-diag-text"><span>Text sample</span><span>'+escapeHTML(textPreview)+(parsed.text.length > 280 ? '…' : '')+'</span></div>' : '')+
+              '</div>'+
+              '<div class="afs-empty" style="margin-top:.7rem;font-style:normal;text-align:left">Please fill the required fields below manually.</div>';
+      summary.innerHTML = h;
       return;
     }
     var h = '<div class="afs-h">'+keys.length+' field'+(keys.length===1?'':'s')+' filled from your PDF</div>';
