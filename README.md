@@ -1,7 +1,6 @@
 # Stone Cold Loans — Website (3 Themes)
 
-A one-page marketing site for a Merchant Cash Advance company, delivered in three
-distinct visual themes so you can compare directions before committing.
+A one-page marketing site for a Merchant Cash Advance company, hosted at https://www.archangel-finance.com/
 
 ## Start here
 
