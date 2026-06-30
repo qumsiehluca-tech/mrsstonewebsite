@@ -766,7 +766,7 @@ h3{font-size:1.42rem}
           </div>
           <div class="frow">
             <label class="fld"><span class="fld-label">Tax ID / EIN</span>
-              <input type="text" name="ein" required placeholder="XX-XXXXXXX">
+              <input type="text" name="ein" required placeholder="XX-XXXXXXX" maxlength="10" inputmode="numeric">
               <span class="ferr">Please enter your EIN or Tax ID.</span></label>
             <label class="fld"><span class="fld-label">Annual Revenue</span>
               <select name="annualRevenue" required>
@@ -784,7 +784,7 @@ h3{font-size:1.42rem}
                 <option>1 to 2 years</option><option>2 to 5 years</option><option>5 or more years</option>
               </select><span class="ferr">Please select time in business.</span></label>
             <label class="fld"><span class="fld-label">Business Phone</span>
-              <input type="tel" name="bizPhone" required placeholder="(555) 123-4567">
+              <input type="tel" name="bizPhone" required placeholder="(555) 123-4567" maxlength="14">
               <span class="ferr">Please enter a business phone.</span></label>
           </div>
           <label class="fld"><span class="fld-label">Business Address</span>
@@ -811,10 +811,10 @@ h3{font-size:1.42rem}
                 <input type="date" name="own1Dob" required>
                 <span class="ferr">Enter a date of birth.</span></label>
               <label class="fld"><span class="fld-label">SSN</span>
-                <input type="text" name="own1Ssn" required placeholder="XXX-XX-XXXX" inputmode="numeric">
+                <input type="text" name="own1Ssn" required placeholder="XXX-XX-XXXX" inputmode="numeric" maxlength="11">
                 <span class="ferr">Please enter the owner's SSN.</span></label>
               <label class="fld"><span class="fld-label">Phone</span>
-                <input type="tel" name="own1Phone" required placeholder="(555) 123-4567">
+                <input type="tel" name="own1Phone" required placeholder="(555) 123-4567" maxlength="14">
                 <span class="ferr">Please enter a valid phone number.</span></label>
               <label class="fld"><span class="fld-label">Home Address</span>
                 <input type="text" name="own1Address" required placeholder="Street, City, State, ZIP">
@@ -834,9 +834,9 @@ h3{font-size:1.42rem}
               <label class="fld"><span class="fld-label">Date of Birth</span>
                 <input type="date" name="own2Dob"></label>
               <label class="fld"><span class="fld-label">SSN</span>
-                <input type="text" name="own2Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+                <input type="text" name="own2Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric" maxlength="11"></label>
               <label class="fld"><span class="fld-label">Phone</span>
-                <input type="tel" name="own2Phone" placeholder="(555) 123-4567"></label>
+                <input type="tel" name="own2Phone" placeholder="(555) 123-4567" maxlength="14"></label>
               <label class="fld"><span class="fld-label">Home Address</span>
                 <input type="text" name="own2Address" placeholder="Street, City, State, ZIP"></label>
               <label class="fld"><span class="fld-label">Email</span>
@@ -853,9 +853,9 @@ h3{font-size:1.42rem}
               <label class="fld"><span class="fld-label">Date of Birth</span>
                 <input type="date" name="own3Dob"></label>
               <label class="fld"><span class="fld-label">SSN</span>
-                <input type="text" name="own3Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+                <input type="text" name="own3Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric" maxlength="11"></label>
               <label class="fld"><span class="fld-label">Phone</span>
-                <input type="tel" name="own3Phone" placeholder="(555) 123-4567"></label>
+                <input type="tel" name="own3Phone" placeholder="(555) 123-4567" maxlength="14"></label>
               <label class="fld"><span class="fld-label">Home Address</span>
                 <input type="text" name="own3Address" placeholder="Street, City, State, ZIP"></label>
               <label class="fld"><span class="fld-label">Email</span>
@@ -872,9 +872,9 @@ h3{font-size:1.42rem}
               <label class="fld"><span class="fld-label">Date of Birth</span>
                 <input type="date" name="own4Dob"></label>
               <label class="fld"><span class="fld-label">SSN</span>
-                <input type="text" name="own4Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></label>
+                <input type="text" name="own4Ssn" placeholder="XXX-XX-XXXX" inputmode="numeric" maxlength="11"></label>
               <label class="fld"><span class="fld-label">Phone</span>
-                <input type="tel" name="own4Phone" placeholder="(555) 123-4567"></label>
+                <input type="tel" name="own4Phone" placeholder="(555) 123-4567" maxlength="14"></label>
               <label class="fld"><span class="fld-label">Home Address</span>
                 <input type="text" name="own4Address" placeholder="Street, City, State, ZIP"></label>
               <label class="fld"><span class="fld-label">Email</span>
@@ -912,17 +912,17 @@ h3{font-size:1.42rem}
           <h2>Document upload</h2>
           <p class="step-sub">A copy of your completed funding application and a written list of your current debt obligations.</p>
 
-          <label class="fld"><span class="fld-label">Funding Application (completed)</span>
+          <div class="fld"><span class="fld-label">Funding Application (completed)</span>
             <div class="drop" data-drop="fundingApp"><div class="drop-t">Drop file or tap to browse</div>
               <div class="drop-h">PDF only</div>
               <input type="file" hidden accept="application/pdf,.pdf"></div>
-            <div class="flist" data-files="fundingApp"></div></label>
+            <div class="flist" data-files="fundingApp"></div></div>
 
-          <label class="fld"><span class="fld-label">List of Current Debt Obligations</span>
+          <div class="fld"><span class="fld-label">List of Current Debt Obligations</span>
             <div class="drop" data-drop="debtList"><div class="drop-t">Drop file or tap to browse</div>
               <div class="drop-h">PDF or image</div>
               <input type="file" hidden accept=".pdf,image/*"></div>
-            <div class="flist" data-files="debtList"></div></label>
+            <div class="flist" data-files="debtList"></div></div>
 
           <p style="color:var(--muted);font-size:.86rem;margin:1rem 0 0;">No documents on hand? You can still continue — the firm will follow up about what to send.</p>
         </div>
@@ -1154,6 +1154,33 @@ h3{font-size:1.42rem}
     return ok;
   }
   card.addEventListener('input',function(e){if(e.target.matches('input,select,textarea'))badField(e.target,false);});
+
+  /* Auto-format SSN / EIN / phone as the user types. */
+  function fmtSsn(v){
+    var d = String(v||'').replace(/\D/g,'').slice(0,9);
+    if(d.length > 5) return d.slice(0,3)+'-'+d.slice(3,5)+'-'+d.slice(5);
+    if(d.length > 3) return d.slice(0,3)+'-'+d.slice(3);
+    return d;
+  }
+  function fmtEin(v){
+    var d = String(v||'').replace(/\D/g,'').slice(0,9);
+    if(d.length > 2) return d.slice(0,2)+'-'+d.slice(2);
+    return d;
+  }
+  function fmtPhone(v){
+    var d = String(v||'').replace(/\D/g,'').slice(0,10);
+    if(d.length > 6) return '('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6);
+    if(d.length > 3) return '('+d.slice(0,3)+') '+d.slice(3);
+    if(d.length > 0) return '('+d;
+    return '';
+  }
+  card.addEventListener('input', function(e){
+    var t = e.target;
+    if(!t.name) return;
+    if(/Ssn$/.test(t.name)) t.value = fmtSsn(t.value);
+    else if(t.name === 'ein') t.value = fmtEin(t.value);
+    else if(t.name === 'bizPhone' || /Phone$/.test(t.name)) t.value = fmtPhone(t.value);
+  });
   nextBtn.addEventListener('click',function(){
     if(!validate(current))return;
     if(current===TOTAL){submitForm();return;}
@@ -1181,7 +1208,7 @@ h3{font-size:1.42rem}
   addDebtRow();
 
   /* uploads */
-  document.querySelectorAll('.drop').forEach(function(zone){
+  document.querySelectorAll('.drop:not(.afm-drop)').forEach(function(zone){
     var input=zone.querySelector('input[type=file]');
     var list=document.querySelector('.flist[data-files="'+zone.dataset.drop+'"]');
     zone.addEventListener('click',function(){input.click();});
