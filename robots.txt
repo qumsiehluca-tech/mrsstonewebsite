@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Internal draft/variant pages — not part of the live site, never index
+Disallow: /index-B.html
+Disallow: /index-C.html
+Disallow: /index-D.html
+Disallow: /old_index.html
+
+# Serverless function — not a page
+Disallow: /api/
+
+Sitemap: https://archangel-finance.com/sitemap.xml
