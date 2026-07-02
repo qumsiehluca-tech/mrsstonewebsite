@@ -949,7 +949,7 @@ h3{font-size:1.42rem}
 
         <div class="notice">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>This intake collects sensitive documents. Demo notice: this site has no backend connected yet — submissions are not transmitted or stored. A secure endpoint must be connected before collecting real intakes.</span>
+          <span>This intake collects sensitive documents. Your submission is transmitted securely to Archangel Finance and reviewed by an attorney before you are contacted.</span>
         </div>
 
         <div class="form-nav">
@@ -1182,8 +1182,11 @@ h3{font-size:1.42rem}
     else if(t.name === 'bizPhone' || /Phone$/.test(t.name)) t.value = fmtPhone(t.value);
   });
   nextBtn.addEventListener('click',function(){
-    if(!validate(current))return;
-    if(current===TOTAL){submitForm();return;}
+    console.log('[Submit debug] Next clicked on step', current, 'of', TOTAL);
+    var ok = validate(current);
+    console.log('[Submit debug] validate() returned', ok);
+    if(!ok){ console.log('[Submit debug] Validation failed — see red errors on the form'); return; }
+    if(current===TOTAL){ console.log('[Submit debug] Final step — calling submitForm()'); submitForm(); return; }
     show(current+1);
   });
   backBtn.addEventListener('click',function(){if(current>1)show(current-1);});
@@ -1251,12 +1254,61 @@ h3{font-size:1.42rem}
   }
 
   function submitForm(){
-    /* NO BACKEND CONNECTED — connect a secure endpoint here before going live. */
-    document.getElementById('formCard').style.display='none';
-    document.getElementById('rail').style.display='none';
-    doneCard.style.display='block';
-    document.getElementById('applyGrid').style.gridTemplateColumns='1fr';
-    window.scrollTo({top:0,behavior:'smooth'});
+    console.log('[Submit debug] submitForm() started');
+    var data = { formType: 'restructuring' };
+    card.querySelectorAll('[name]').forEach(function(f){
+      if(f.type === 'checkbox' || f.type === 'file') return;
+      var v = f.value ? f.value.trim() : '';
+      if(v) data[f.name] = v;
+    });
+    // Collect debt obligation rows from the dynamic table.
+    var debtRows = [];
+    document.querySelectorAll('#debtRows tr').forEach(function(tr){
+      var keys = ['funder','originalAmt','balance','payment','frequency','endDate'];
+      var row = {};
+      tr.querySelectorAll('input,select').forEach(function(inp,i){
+        var v = inp.value ? inp.value.trim() : '';
+        if(v) row[keys[i] || ('col'+i)] = v;
+      });
+      if(Object.keys(row).length) debtRows.push(row);
+    });
+    if(debtRows.length) data.debtRows = debtRows;
+
+    console.log('[Submit debug] Data collected:', data);
+    console.log('[Submit debug] About to fetch /api/submit …');
+
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Sending…';
+
+    fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r){
+      console.log('[Submit debug] Response status:', r.status);
+      return r.json().catch(function(){ return { error: 'Non-JSON response' }; });
+    })
+    .then(function(resp){
+      console.log('[Submit debug] Response body:', resp);
+      if(resp && resp.ok){
+        document.getElementById('formCard').style.display='none';
+        document.getElementById('rail').style.display='none';
+        doneCard.style.display='block';
+        document.getElementById('applyGrid').style.gridTemplateColumns='1fr';
+        window.scrollTo({top:0,behavior:'smooth'});
+      } else {
+        alert('Something went wrong: ' + ((resp && resp.error) || 'Unknown error') + '\n\nPlease try again, or contact us directly.');
+        nextBtn.disabled = false;
+        nextBtn.textContent = 'Send for Review';
+      }
+    })
+    .catch(function(err){
+      console.error('[Submit debug] Fetch failed:', err);
+      alert('A network error occurred. Please check your connection and try again.');
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Send for Review';
+    });
   }
   function esc(s){return String(s).replace(/[&<>"\']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"\'":'&#39;'}[c];});}
 
